@@ -1,0 +1,43 @@
+
+<!-- Extend from the glaze_content.html template -->
+{% extends "glaze/glaze_content.html" %}
+
+{% block glaze_body %}
+
+  <form
+    enctype =
+      "{% if glaze_form_enctype %}
+        {{ glaze_form_enctype }}
+      {% else %}
+        application/x-www-form-urlencoded
+      {% endif %}"
+    action = "{{ glaze_form_action }}"
+    method = "POST">
+
+    {% csrf_token %}
+
+    <div class="modal-body">
+      {% include "formality/form_description.html" %}
+      {% block glaze_form_inputs %}
+        <!-- Extension e.g. {% include "formality/form_fields.html" with form=some_form %} -->
+        <!-- This pattern can be used for more than one form -->
+      {% endblock %}
+      {% include "formality/form_non_field_errors.html" %}
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">
+        Close
+      </button>
+      <button type="submit" class="btn btn-primary" onclick="glazeSubmitForm(this)">
+        {% if glaze_form_submit_name %}
+          {{ glaze_form_submit_name }}
+        {% else %}
+          Submit
+        {% endif %}
+      </button>
+    </div>
+
+  </form>
+
+{% endblock %}

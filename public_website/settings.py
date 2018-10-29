@@ -20,6 +20,7 @@ from decouple import config
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MEDIA_DIR = os.path.join(BASE_DIR, "media")
 STATIC_DIR = os.path.join(BASE_DIR, "static")
+GOOGLE_RECAPTCHA_SECRET_KEY = config('GOOGLE_RECAPTCHA_SECRET_KEY')
 
 
 # Quick-start development settings - unsuitable for production
@@ -31,7 +32,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['127.0.0.1', '.', 'localhost', 'www.djangomeetup.io', 'djangomeetup.io' ]
+ALLOWED_HOSTS = ['127.0.0.1', '.', 'localhost', 'www.djangomeetup.com', 'djangomeetup.com' ]
 DOMAIN = config('DOMAIN')
 
 
@@ -46,6 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'widget_tweaks',
     'apps.anonymous',
+    'apps.formality',
+    'apps.glaze',
 ]
 
 MIDDLEWARE = [

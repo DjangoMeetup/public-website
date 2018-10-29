@@ -48,10 +48,13 @@
 
     <!-- Utilise this block if you wish to add further links within the html head tag -->
     {% block head_links %}
-      <link rel="shortlink" href="https://djangomeetup.io">
-      <link rel="stylesheet" type="text/css" href="{% static "anonymous/css/main.css" %}">
+      <link rel="shortlink" href="https://djangomeetup.com">
+      <link rel="stylesheet" type="text/css" href="{% static 'anonymous/css/main.css' %}">
+      <link rel="stylesheet" type="text/css" href="{% static 'glaze/glaze.css' %}">
+      <link rel="stylesheet" type="text/css" href="{% static 'formality/formality.css' %}">
       <link rel="shortcut icon" href="/static/anonymous/img/favicon.ico" type="image/x-icon">
-      <link rel="icon" href="/static/anonymous/img/favicon.ico?v=16" type="image/x-icon">
+      <link rel="icon" href="/static/anonymous/img/favicon.ico" type="image/x-icon">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     {% endblock %}
 
     <!-- Utilise this block if you wish to add any local head links -->
@@ -61,6 +64,9 @@
   </head>
 
   <body>
+
+    <!-- Glaze dialog plugin -->
+    {% include "glaze/glaze.html" %}
 
     <!-- Utilise this block if you wish to add html plugins -->
     {% block body_plugins %}
@@ -75,8 +81,12 @@
       <!-- jQuery (necessary for our custom plugins) -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
       <!-- Include all compiled plugins, or include individual files as needed -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-      <script src="{% static "anonymous/js/main.js" %}"></script>
+      <script src="{% static 'anonymous/js/main.js' %}"></script>
+      <script src="{% static 'glaze/glaze.js' %}"></script>
+
     {% endblock %}
 
     <!-- Utilise this block if you wish to add any local js -->
