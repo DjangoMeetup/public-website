@@ -146,7 +146,7 @@ class LogoutGlaze(GlazeMixin, LogoutTemplate):
 class PasswordResetGlaze(GlazeMixin, PasswordResetTemplate):
 
     email_template_name = "member/email_password_reset.html"
-    extra_email_context = {"site_domain": settings.DOMAIN}
+    extra_email_context = {"domain": settings.DOMAIN}
     form_class = PasswordResetForm
     subject_template_name = "member/email_password_reset_subject.txt"
     success_url = reverse_lazy("member:password_reset_acknowledged")
