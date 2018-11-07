@@ -1,6 +1,13 @@
 
 /*** Start Activate Glaze  ****************************************************/
 
+  function redirectGlaze(redirect_url) {
+    if (redirect_url != undefined) {
+      document.location = redirect_url;
+    }
+  }
+
+
   function renderGlaze(aGlazeUrl) {
     // Inject the desired content into the glaze bootstrap modal
     $("#id-modal-content").html("").load(aGlazeUrl);
@@ -44,13 +51,13 @@
         dataType: "json",
         success: function (data) {
           if (data.is_glaze) {
-            if (data.glaze_success_url == undefined) {
+            if (data.success_url == undefined) {
               $("#id-modal-content").html(data.glaze_html);
             } else {
-              glazeRender(data.glaze_success_url);
+              renderGlaze(data.success_url);
             }
           } else {
-            document.location = data.redirect_url;
+            document.location = data.success_url;
           }
         },
       });

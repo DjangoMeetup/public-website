@@ -14,6 +14,20 @@ code available within this repository.
 Email: info@djangomeetup.com
 Telegram: https://t.me/DjangoMeetup
 
+## External Prerequisites
+Following are the external resources you will need to activate to run a local
+instance of Django Meetup
+
+### Google reCaptcha
+To help protect your against bots looking to spam and abuse we have used Google
+reCaptcha.  Following is a handy tutorial to help you run locally:
+https://simpleisbetterthancomplex.com/tutorial/2017/02/21/how-to-add-recaptcha-to-django-site.html
+
+### Mailgun
+To handle email delivery we have gone with Mailgun.  Following is a handy
+tutorial to help you run locally:
+https://simpleisbetterthancomplex.com/tutorial/2017/05/27/how-to-configure-mailgun-to-send-emails-in-a-django-app.html
+
 ## Apps Overview
 Following are brief descriptions of the apps developed for this project.
 

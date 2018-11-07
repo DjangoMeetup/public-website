@@ -23,5 +23,10 @@
   </label>
   <div class="col-sm-9">
     {% render_field field class="form-control" %}
+    {% if field.errors %}
+      <div class="col-form-label text-danger">
+        {{ field.errors |safe }}
+      </div>
+    {% endif %}
   </div>
 </div>

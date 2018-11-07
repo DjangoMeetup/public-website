@@ -22,6 +22,13 @@ MEDIA_DIR = os.path.join(BASE_DIR, "media")
 STATIC_DIR = os.path.join(BASE_DIR, "static")
 GOOGLE_RECAPTCHA_SECRET_KEY = config('GOOGLE_RECAPTCHA_SECRET_KEY')
 
+# Email configuration
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = 587
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = True
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
@@ -35,7 +42,6 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 ALLOWED_HOSTS = ['127.0.0.1', '.', 'localhost', 'www.djangomeetup.com', 'djangomeetup.com' ]
 DOMAIN = config('DOMAIN')
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -47,8 +53,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'widget_tweaks',
     'apps.anonymous',
+    'apps.coact',
     'apps.formality',
     'apps.glaze',
+    'apps.member',
 ]
 
 MIDDLEWARE = [
@@ -66,7 +74,7 @@ ROOT_URLCONF = 'public_website.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [ ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -95,6 +103,8 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
+
+AUTH_USER_MODEL = 'member.Person'
 
 AUTH_PASSWORD_VALIDATORS = [
     {

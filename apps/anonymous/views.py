@@ -3,6 +3,7 @@ from apps.anonymous.forms import EntryForm
 from apps.formality.views import evaluate_recaptcha
 from apps.glaze.views import GlazeMixin
 from public_website import settings
+from django.contrib.auth.mixins import AccessMixin
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.urls import reverse, reverse_lazy
@@ -36,9 +37,7 @@ class EntryGlaze(GlazeMixin, FormView):
     glaze_form_action = reverse_lazy("anonymous:entry")
 
     def initialize_post(self, request):
-        recaptcha_error = evaluate_recaptcha(request)
-        if recaptcha_error:
-            self.glaze_external_errors.append(recaptcha_error)
+        evaluate_recaptcha(request, self.glaze_external_errors)
 
 
 def entry_granted(request):
@@ -47,20 +46,41 @@ def entry_granted(request):
 
 
 def is_site_accessible(request):
-    # Answer true if the session has access to DjangoMeetup main website
+    """Answer true if the session has access to DjangoMeetup main website"""
     if not ("is_site_accessible" in request.session):
         request.session["is_site_accessible"] = False
     return (settings.DEBUG or request.session["is_site_accessible"])
 
 
+def site_accessible(request):
+    """Enable access to the site"""
+    request.session["is_site_accessible"] = True
+
+
 class EntryMixin:
-    # Mixin class for view classes to ensure session has access
+    """Mixin class for view classes to ensure session has access"""
     def dispatch(self, request, *args, **kwargs):
         if is_site_accessible(request):
             return super().dispatch(request, *args, **kwargs)
         else:
             request.session["glaze_url"] = reverse("anonymous:entry")
             return redirect("anonymous:holding")
+
+
+class LoggedInMixin(EntryMixin, AccessMixin):
+    """Verify that the current user is authenticated."""
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            request.session["glaze_url"] = reverse("anonymous:login_required")
+            return redirect("anonymous:home")
+        return super().dispatch(request, *args, **kwargs)
+
+
+class LoginRequiredGlaze(GlazeMixin, TemplateView):
+
+    template_name = "anonymous/glaze_login_required.html"
+    # Glaze overlay configuration
+    glaze_heading = "Login Requried"
 
 
 class HomeView(EntryMixin, TemplateView):

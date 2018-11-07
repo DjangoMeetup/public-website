@@ -5,7 +5,7 @@ import json
 import urllib
 
 
-def evaluate_recaptcha(request):
+def evaluate_recaptcha(request, errors):
     # Google Recaptcha validation
     recaptcha_response = request.POST.get("g-recaptcha-response")
     url = "https://www.google.com/recaptcha/api/siteverify"
@@ -17,7 +17,5 @@ def evaluate_recaptcha(request):
     req =  urllib.request.Request(url, data=data)
     response = urllib.request.urlopen(req)
     result = json.loads(response.read().decode())
-    if result["success"]:
-        return None
-    else:
-        return "Site access denied, Google reCaptcha authentication failed"
+    if not result["success"]:
+        errors.append("Site access denied, Google reCaptcha authentication failed")

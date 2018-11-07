@@ -1,0 +1,17 @@
+
+<!-- Extend from the base.html template -->
+{% extends "anonymous/base.html" %}
+
+<!-- Insertion of html for the page -->
+{% block body %}
+
+  <!-- Insertion of html for the page -->
+  <div class="page">
+    {% include "anonymous/header.html" %}
+    {% block page %}
+    {% endblock %}
+  </div>
+
+  {% include "anonymous/footer.html" %}
+
+{% endblock %}

@@ -1,0 +1,15 @@
+
+<!-- Extend from the glaze_notice.html template -->
+{% extends "glaze/glaze_notice.html" %}
+
+{% block glaze_notice %}
+  <p>You have already verified your membership.</p>
+  <p>The verification link is no longer required.</p>
+  <p>Please login via the link below.</p>
+{% endblock %}
+
+{% block glaze_footer %}
+  <div class="modal-footer">
+    {% include "member/glaze_login_footnote.html" %}
+  </div>
+{% endblock %}

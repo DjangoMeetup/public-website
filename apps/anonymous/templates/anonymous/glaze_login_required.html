@@ -1,0 +1,14 @@
+
+<!-- Extend from the glaze_notice.html template -->
+{% extends "glaze/glaze_notice.html" %}
+
+{% block glaze_notice %}
+  <p>Login is required to view the url requested.</p>
+  <p>Please login via the link below.</p>
+{% endblock %}
+
+{% block glaze_footer %}
+  <div class="modal-footer">
+    {% include "member/glaze_login_footnote.html" %}
+  </div>
+{% endblock %}

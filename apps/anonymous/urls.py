@@ -14,5 +14,6 @@ urlpatterns = [
     url(r"^entry/$", views.EntryGlaze.as_view(), name="entry"),
     url(r"^entry_granted/$", views.entry_granted, name="entry_granted"),
     url(r"^home/$", views.HomeView.as_view(), name="home"),
+    url(r"^login_required/$", views.LoginRequiredGlaze.as_view(), name="login_required"),
     url(r"^$", views.HoldingView.as_view(), name="holding"),
 ]

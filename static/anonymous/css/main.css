@@ -15,6 +15,23 @@
 
 /*** End Generic Elements *****************************************************/
 
+/*** Start Page ***************************************************************/
+
+  html, body {
+    height: 100%;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .page {
+    flex: 1 0 auto;
+  }
+
+/*** End Page ***************************************************************/
+
 /*** Start Holding Page *******************************************************/
 
   .holding {
@@ -29,3 +46,65 @@
   }
 
 /*** End Holding Page *********************************************************/
+
+/*** Start Header *************************************************************/
+
+  .nav-start-meetup {
+    border-right: 1px solid #DDDDDD;
+    font-weight: bold;
+  }
+
+/*** End Header ***************************************************************/
+
+/*** Start Footer *************************************************************/
+
+  .footer {
+    flex-shrink: 0;
+  }
+
+  .footer-social-anchor {
+    float: left;
+  }
+
+  .footer-social-icon {
+    float: left;
+    width: 25px;
+    height: 25px;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .footer-social-label {
+    float: left;
+    padding: 2px 15px 0px 3px;
+  }
+
+  .telegram {
+    background-image: url("/static/anonymous/img/icon/telegram.png");
+  }
+
+  .twitter {
+    background-image: url("/static/anonymous/img/icon/twitter.png");
+  }
+
+  .medium {
+    background-image: url("/static/anonymous/img/icon/medium.png");
+  }
+
+  .github {
+    background-image: url("/static/anonymous/img/icon/github.png");
+  }
+
+  @media screen and (max-width: 575px) {
+
+    .footer-social-icon {
+      margin-right: 10px;
+    }
+
+    .footer-social-label {
+      display: none;
+    }
+
+  }
+
+/*** End Footer ***************************************************************/

@@ -16,23 +16,9 @@ class GlazeMixin:
     glaze_form_action = None
     glaze_cancel_url = None
     glaze_callback_context = {}
-    glaze_success_url = None
     glaze_external_errors = []
+    is_success_glaze = False
 
-
-    def get_success_url(self):
-        """
-        Overridden so that only one success url needs to be defined
-        i.e. either success_url for standard full page redirect_url
-        or the glaze_success_url for Ajax render in the glaze overlay
-        """
-        if (self.glaze_success_url is None):
-            try:
-                return super.get_success_url()
-            except AttributeError:
-                self.success_url
-        else:
-            return self.glaze_success_url
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -58,12 +44,8 @@ class GlazeMixin:
         super().post(request, *args, **kwargs)
         data = {}
         if (is_form_valid & (not self.glaze_external_errors)):
-            if (self.glaze_success_url is None):
-                data["is_glaze"] = False
-                data["redirect_url"] = self.success_url
-            else:
-                data["is_glaze"] = True
-                data["glaze_success_url"] = self.glaze_success_url
+            data["is_glaze"] = self.is_success_glaze
+            data["success_url"] = self.success_url
             self.finalize_post(request)
         else:
             data["is_glaze"] = True
