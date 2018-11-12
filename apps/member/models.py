@@ -24,7 +24,7 @@ class Person(AbstractUser):
     ### Enumerating [Person] ###################################################
 
     def absolute_url(self):
-        return reverse("member:hub", kwargs={ "pk":self.pk })
+        return reverse('member:hub', kwargs={ 'pk':self.pk })
 
     ### Printing [Person] ######################################################
 

@@ -4,15 +4,7 @@
 
 {% block glaze_body %}
 
-  <form
-    enctype =
-      "{% if glaze_form_enctype %}
-        {{ glaze_form_enctype }}
-      {% else %}
-        application/x-www-form-urlencoded
-      {% endif %}"
-    action = "{{ glaze_form_action }}"
-    method = "POST">
+  <form enctype="{% if glaze_form_enctype %}{{ glaze_form_enctype }}{% else %}application/x-www-form-urlencoded{% endif %}" action = "{{ glaze_form_action }}" method = "POST">
 
     {% csrf_token %}
 

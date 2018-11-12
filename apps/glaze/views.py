@@ -4,7 +4,7 @@ from django.template.loader import render_to_string
 
 
 def reset_session(request):
-    del request.session["glaze_url"]
+    del request.session['glaze_url']
     return HttpResponse(None)
 
 
@@ -23,13 +23,13 @@ class GlazeMixin:
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         if (self.glaze_heading is not None):
-            context["glaze_heading"] = self.glaze_heading
+            context['glaze_heading'] = self.glaze_heading
         if (self.glaze_form_submit_name is not None):
-            context["glaze_form_submit_name"] = self.glaze_form_submit_name
+            context['glaze_form_submit_name'] = self.glaze_form_submit_name
         if (self.glaze_form_action is not None):
-            context["glaze_form_action"] = self.glaze_form_action
+            context['glaze_form_action'] = self.glaze_form_action
         if (self.glaze_cancel_url is not None):
-            context["glaze_cancel_url"] = self.glaze_cancel_url
+            context['glaze_cancel_url'] = self.glaze_cancel_url
         context = {**context, **self.glaze_callback_context}
         return context
 
@@ -44,12 +44,12 @@ class GlazeMixin:
         super().post(request, *args, **kwargs)
         data = {}
         if (is_form_valid & (not self.glaze_external_errors)):
-            data["is_glaze"] = self.is_success_glaze
-            data["success_url"] = self.success_url
+            data['is_glaze'] = self.is_success_glaze
+            data['success_url'] = self.success_url
             self.finalize_post(request)
         else:
-            data["is_glaze"] = True
-            data["glaze_html"] = render_to_string(
+            data['is_glaze'] = True
+            data['glaze_html'] = render_to_string(
                 self.template_name,
                 self.get_context_data(form=form),
                 request=request)

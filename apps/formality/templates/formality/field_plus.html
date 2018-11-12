@@ -6,19 +6,7 @@
   <label for="inputEmail3" class="col-sm-3 col-form-label">
     {{ field.label_tag|title }}
     {% if field.help_text %}
-      <img
-        class="formality-icon"
-        src="{% static 'anonymous/img/icon/info-2x.png' %}"
-        alt="i"
-        title=
-          "{% if field.label %}
-            {{ field.label }} Info
-          {% else %}
-            Info
-          {% endif %}"
-        data-content="{{ field.help_text }}"
-        data-placement="bottom"
-        onclick="$(this).popover('show');">
+      <img class="formality-icon" src="{% static 'anonymous/img/icon/info-2x.png' %}" alt="i" title="{% if field.label %}{{ field.label }}Info{% else %}Info{% endif %}" data-content="{{ field.help_text }}" data-placement="bottom" onclick="$(this).popover('show');">
     {% endif %}
   </label>
   <div class="col-sm-9">

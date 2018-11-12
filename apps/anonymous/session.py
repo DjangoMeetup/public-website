@@ -9,5 +9,5 @@ def error(request):
     Custom handling of error requests; which default to home page with
     dialog pop up explaining the situation.
     """
-    request.session["glaze_url"] = reverse("anonymous:error")
+    request.session['glaze_url'] = reverse('anonymous:error')
     return redirect(DEFAULT_URL)

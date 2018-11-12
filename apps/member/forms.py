@@ -15,24 +15,24 @@ class SignUpForm(UserCreationForm):
 
     email = forms.EmailField(
         max_length=254,
-        help_text="Valid email required for member authentication.")
+        help_text='Valid email required for member authentication.')
 
     class Meta:
-        fields = ("username", "email", "password1", "password2")
+        fields = ('username', 'email', 'password1', 'password2')
         model = get_user_model()
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.description = """Create a Django Meetup account, help grow the
             Django community and enjoy our custom features."""
-        self.fields["password2"].label = "Confirm"
+        self.fields['password2'].label = 'Confirm'
 
     def clean(self):
         all_clean_data = super().clean()
-        email = all_clean_data["email"]
-        username = all_clean_data["username"]
+        email = all_clean_data['email']
+        username = all_clean_data['username']
         if email and Person.objects.filter(email=email).exclude(username=username).exists():
-            self.add_error('email', u"Email is already associated with another account")
+            self.add_error('email', u'Email is already associated with another account')
 
 
 class PasswordResetForm(PasswordResetFormTemplate):
@@ -50,7 +50,7 @@ class PasswordResetForm(PasswordResetFormTemplate):
                 subject_template_name,
                 email_template_name,
                 context,
-                "Django Meetup <info@djangomeetup.com>",
+                'Django Meetup <info@djangomeetup.com>',
                 to_email
             ]
         )
