@@ -1,13 +1,26 @@
+from django.conf import settings
+from django.urls import path, include
+from django.conf.urls.static import static
+from django.contrib import admin
 
-from django.conf.urls import include, url
+admin.autodiscover()
+urlpatterns = []
 
+if settings.DEBUG:
+    import debug_toolbar
+
+    urlpatterns += [path('__debug__/', include(debug_toolbar.urls))]
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns = [
-    url(r'^coact/', include('apps.coact.urls')),
-    url(r'^member/', include('apps.member.urls')),
-    url(r'^', include('apps.anonymous.urls')),
-    url(r'^', include('apps.glaze.urls')),
+    # Admin.
+    path('admin/', admin.site.urls),
+
+    path('coact/', include('coact.urls')),
+    path('member/', include('member.urls')),
+    path('', include('anonymous.urls')),
+    path('', include('glaze.urls')),
 ]
 
-handler404 = 'apps.anonymous.session.error'
-handler500 = 'apps.anonymous.session.error'
+handler404 = 'anonymous.session.error'
+handler500 = 'anonymous.session.error'

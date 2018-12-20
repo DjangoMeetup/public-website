@@ -1,4 +1,3 @@
-
 """
 Hard reset for database through the following:
 a) deleting the following:
