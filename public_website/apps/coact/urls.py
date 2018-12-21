@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.urls import path
 
 from coact import views
 
@@ -6,5 +6,5 @@ from coact import views
 app_name = 'coact'
 
 urlpatterns = [
-    url(r'^meetup_creation$', views.MeetupCreationGlaze.as_view(), name='meetup_creation'),
+    path('meetup_creation/', views.MeetupCreationGlaze.as_view(), name='meetup_creation'),
 ]

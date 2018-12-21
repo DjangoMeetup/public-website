@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.urls import path
 
 from glaze import views
 
@@ -6,5 +6,5 @@ from glaze import views
 app_name = 'glaze'
 
 urlpatterns = [
-    url(r'^reset_session/$', views.reset_session, name='reset_session'),
+    path('reset_session/', views.reset_session, name='reset_session'),
 ]
