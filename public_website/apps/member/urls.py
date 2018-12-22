@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.urls import path, re_path
 
 from member import views
 
@@ -6,25 +6,25 @@ from member import views
 app_name = 'member'
 
 urlpatterns = [
-    url(r'^hub$', views.HubView.as_view(), name='hub'),
-    url(r'^login$', views.LoginGlaze.as_view(), name='login'),
-    url(r'^logout$', views.LogoutGlaze.as_view(), name='logout'),
-    url(r'^password_reset$', views.PasswordResetGlaze.as_view(), name='password_reset'),
-    url(r'^password_reset_acknowledged$', views.PasswordResetAcknowledgedGlaze.as_view(),
+    path('hub/', views.HubView.as_view(), name='hub'),
+    path('login/', views.LoginGlaze.as_view(), name='login'),
+    path('logout/', views.LogoutGlaze.as_view(), name='logout'),
+    path('password_reset/', views.PasswordResetGlaze.as_view(), name='password_reset'),
+    path('password_reset_acknowledged/', views.PasswordResetAcknowledgedGlaze.as_view(),
         name='password_reset_acknowledged'),
-    url(r'^password_reset_complete$', views.PasswordResetCompleteGlaze.as_view(), name='password_reset_complete'),
-    url(r'^password_reset_confirm/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+    path('password_reset_complete/', views.PasswordResetCompleteGlaze.as_view(), name='password_reset_complete'),
+    re_path(r'^password_reset_confirm/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$/',
         views.PasswordResetConfirmGlaze.as_view(), name='password_reset_confirm'),
-    url(r'^password_reset_failed$', views.PasswordResetFailedGlaze.as_view(), name='password_reset_failed'),
-    url(r'^password_reset_verification/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+    path('password_reset_failed/', views.PasswordResetFailedGlaze.as_view(), name='password_reset_failed'),
+    re_path(r'^password_reset_verification/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$/',
         views.password_reset_verification, name='password_reset_verification'),
-    url(r'^profile$', views.ProfileView.as_view(), name='profile'),
-    url(r'^signup$', views.SignupGlaze.as_view(), name='signup'),
-    url(r'^signup_acknowledged$', views.SignUpAcknowledgedGlaze.as_view(), name='signup_acknowledged'),
-    url(r'^signup_failed$', views.SignUpFailedGlaze.as_view(), name='signup_failed'),
-    url(r'^signup_verified_previously$', views.SignUpVerifiedPreviouslyGlaze.as_view(),
+    path('profile/', views.ProfileView.as_view(), name='profile'),
+    path('signup/', views.SignupGlaze.as_view(), name='signup'),
+    path('signup_acknowledged/', views.SignUpAcknowledgedGlaze.as_view(), name='signup_acknowledged'),
+    path('signup_failed/', views.SignUpFailedGlaze.as_view(), name='signup_failed'),
+    path('signup_verified_previously/', views.SignUpVerifiedPreviouslyGlaze.as_view(),
         name='signup_verified_previously'),
-    url(r'^signup_verification/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+    re_path(r'^signup_verification/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$/',
         views.signup_verification, name='signup_verification'),
-    url(r'^signup_welcome$', views.SignUpWelcomeGlaze.as_view(), name='signup_welcome'),
+    path('signup_welcome/', views.SignUpWelcomeGlaze.as_view(), name='signup_welcome'),
 ]
