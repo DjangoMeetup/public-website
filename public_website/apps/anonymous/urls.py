@@ -1,6 +1,9 @@
 from public_website.apps.anonymous import views
 from django.urls import path
+<<<<<<< HEAD
 
+=======
+>>>>>>> upstream/master
 
 # Template tagging Django reference
 app_name = 'anonymous'
@@ -13,6 +16,10 @@ urlpatterns = [
     path('entry_granted/', views.entry_granted, name='entry_granted'),
     path('home/', views.HomeView.as_view(), name='home'),
     path('login_required/', views.LoginRequiredGlaze.as_view(), name='login_required'),
+<<<<<<< HEAD
     path('/', views.HoldingView.as_view(), name='holding'),
+=======
+    path('', views.HoldingView.as_view(), name='holding'),
+>>>>>>> upstream/master
 ]
 
