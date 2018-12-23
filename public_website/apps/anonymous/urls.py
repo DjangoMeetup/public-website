@@ -13,6 +13,8 @@ urlpatterns = [
     path('entry_granted/', views.entry_granted, name='entry_granted'),
     path('home/', views.HomeView.as_view(), name='home'),
     path('login_required/', views.LoginRequiredGlaze.as_view(), name='login_required'),
-    path('/', views.HoldingView.as_view(), name='holding'),
+
+    path('', views.HoldingView.as_view(), name='holding'),
+
 ]
 
