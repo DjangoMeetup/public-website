@@ -1,0 +1,43 @@
+{% extends 'anonymous/base.html' %}
+{% load static %}
+{% load static %}
+
+{# To be redone properly, maybe using Glaze? #}
+
+{% block head_local_links %}
+{# admin stylesheet and css for the datetime field #}
+<link rel="stylesheet" type="text/css" href="{% static 'admin/css/widgets.css' %}"/>
+<script type="text/javascript" src="/admin/jsi18n/"></script>
+<script type="text/javascript" src="{% static 'admin/js/core.js' %}"></script>
+<script type="text/javascript" src="{% static 'admin/js/admin/RelatedObjectLookups.js' %}"></script>
+<script type="text/javascript" src="{% static 'admin/js/vendor/jquery/jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'admin/js/jquery.init.js' %}"></script>
+<script type="text/javascript" src="{% static 'admin/js/actions.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'admin/js/calendar.js' %}"></script>
+<script type="text/javascript" src="{% static 'admin/js/admin/DateTimeShortcuts.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+
+{# success message #}
+{% if success %}
+<div class='alert alert-success' role='alert'>
+	<h3>Success</h3>
+	<h5>The info has been saved</h5>
+</div>
+{% endif %}
+
+<div class="container">
+	<form method="post" action="">
+		<h4>Form</h4>
+		{% csrf_token %}
+    	{{ form.as_p }}
+	 <button type="submit" class="btn btn-primary">Create</button>
+	</form>
+
+</div>
+<br>
+<br><br>
+
+
+{% endblock %}

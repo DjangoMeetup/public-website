@@ -53,6 +53,7 @@ LOCAL_APPS = [
     'formality',
     'glaze',
     'member',
+    'events',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -140,7 +141,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, '../static_root')
+STATIC_ROOT = os.path.join(BASE_DIR, '../staticfiles')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
