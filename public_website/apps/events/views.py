@@ -2,6 +2,7 @@ from django.views.generic import TemplateView
 from django.shortcuts import render, get_object_or_404
 from events.models import Events
 from events.forms import EventCreationForm
+from django.http import HttpResponse, HttpResponseNotFound
 # Create your views here.
 
 class EventCreationView(TemplateView):
@@ -63,13 +64,18 @@ class EventSpecifics(TemplateView):
 	template_name = 'events/event_specifics.html'
 
 	def get(self, request, slug):
-		event = Events.objects.get_object_or_404(slug=slug)
+		try:
+			event = Events.objects.get(slug=slug)
+		except:
+			return HttpResponseNotFound('<h1>Page not found</h1>')
 		args = {'event': event}
 		return render(request, self.template_name, args)
 	def post(self, request, slug):
 		user = request.user
-		event = Events.objects.get_object_or_404(slug=slug)
-
+		try:
+			event = Events.objects.get(slug=slug)
+		except:
+			return HttpResponseNotFound('<h1>Page not found</h1>')
 		if user.is_authenticated:
 			event.attendees.add(request.user)
 			success = True

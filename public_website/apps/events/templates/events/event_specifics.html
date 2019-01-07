@@ -8,8 +8,10 @@
 	<h3>Success</h3>
 	<h5>The info has been saved</h5>
 </div>
+{% endif %}
 
 {# if the user is not authenticated #}
+{% if anonymous %}
 <div class='alert alert-danger' role='alert'>
 	<h3>Oh no!</h3>
 	<h5>Please login so we know who you are first.</h5>
@@ -17,9 +19,11 @@
 </div>
 
 {% endif %}
-<h1>Event Details</h1>
-	<h2>{{ event.name }}</h2>
-	<h3>{{ event.description }}</h3>
+
+<div class="container">
+	<h1>{{ event.name }}</h1>
+	<hr>
+	<p>{{ event.description }}</p>
 
 	<h3>Date: {{ event.day }}</h3>
 	<h3>Organisor: {{ event.organisor }}</h3>
@@ -31,7 +35,7 @@
 		</ul>
 
 
-	{% if_user.authenticated %}
+	{% if user.is_authenticated %}
 	{# posts the user details which adds them to the list #}
 	<form method="post" action="">
 		{% csrf_token %}
@@ -52,6 +56,8 @@
         </a>
 	</div>
 	{% endif %}
+	
+</div>
 
 
 {% endblock %}
