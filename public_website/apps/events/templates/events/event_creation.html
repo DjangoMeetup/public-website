@@ -1,0 +1,62 @@
+{% extends 'anonymous/base.html' %}
+{% load static %}
+
+{# To be redone properly, maybe using Glaze? #}
+
+{% block head_local_links %}
+{# admin stylesheet and css for the datetime field #}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- Bootstrap stuff -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+ <!-- XDSoft DateTimePicker -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" integrity="sha256-DOS9W6NR+NFe1fUhEE0PGKY/fubbUCnOfTje2JMDw3Y=" crossorigin="anonymous" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha256-FEqEelWI3WouFOo2VWP/uJfs1y8KJ++FLh2Lbqc8SJk=" crossorigin="anonymous"></script>
+{% endblock %}
+
+{% block body %}
+
+{# success message #}
+{% if success %}
+<div class='alert alert-success' role='alert'>
+	<h3>Success</h3>
+	<h5>The info has been saved</h5>
+</div>
+{% endif %}
+
+<div class="container">
+	<form method="post" action="">
+		<h2>Create Event</h2>
+		{% csrf_token %}
+    	{% include 'bf_form.html' with form=form %}
+
+    {% if user.is_authenticated %}
+	 <button type="submit" class="btn btn-primary">Create</button>
+	</form>
+
+	 {% else %}
+	 <button type="submit" class="btn btn-primary" disabled>Create</button>
+<div class="alert alert-danger">
+	<h5>
+		Sorry, but you have to be logged in before you can create an event.
+	</h5>
+		<a class="btn btn-primary"href=# onclick="renderGlaze('{% url 'member:login' %}')">
+          Log In
+        </a>
+        <a class="btn btn-warning" href=# onclick="renderGlaze('{% url 'member:signup' %}')">
+          Sign Up
+        </a>
+	</div>
+	{% endif %}
+    
+</div>
+<br>
+<br><br>
+
+
+{% endblock %}
+
+{% block body_js %}
+{# otjher script blocks were causing for the datetimepicker not to function properly #}
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+{% endblock %}
