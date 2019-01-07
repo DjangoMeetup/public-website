@@ -1,13 +1,13 @@
-{% extends 'anonymous/base.html' %}
+{% extends 'anonymous/base_page.html' %}
 
-{% block body %}
+{% block page %}
 <br>
 <div class="container">
 <h1>Events:</h1>
 {# listing all the events #}
 {% for event in event_list %}
 <div class="container rounded" style="border-style:solid;
-    border-width:0.5em">
+    border-width:0.2em">
     	
 	<h2><a href="{% url 'events:event_specifics' slug=event.slug %}">{{ event.name }}</a></h2>
     </div>
