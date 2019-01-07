@@ -47,6 +47,7 @@ class EventCreationForm(forms.ModelForm):
 		fields = ('name', 'description', 'day')
 		widgets = {
 		'day': XDSoftDateTimePickerInput(),
+		'description': forms.Textarea,		
 		}
 		input_formats = {
 		'day': ['%d/%m/%Y %H:%M'],

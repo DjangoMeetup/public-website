@@ -26,12 +26,29 @@
 
 <div class="container">
 	<form method="post" action="">
-		<h4>Form</h4>
+		<h2>Create Event</h2>
 		{% csrf_token %}
-    	{{ form.as_p }}
+    	{% include 'bf_form.html' with form=form %}
+
+    {% if user.is_authenticated %}
 	 <button type="submit" class="btn btn-primary">Create</button>
 	</form>
 
+	 {% else %}
+	 <button type="submit" class="btn btn-primary" disabled>Create</button>
+<div class="alert alert-danger">
+	<h5>
+		Sorry, but you have to be logged in before you can create an event.
+	</h5>
+		<a class="btn btn-primary"href=# onclick="renderGlaze('{% url 'member:login' %}')">
+          Log In
+        </a>
+        <a class="btn btn-warning" href=# onclick="renderGlaze('{% url 'member:signup' %}')">
+          Sign Up
+        </a>
+	</div>
+	{% endif %}
+    
 </div>
 <br>
 <br><br>

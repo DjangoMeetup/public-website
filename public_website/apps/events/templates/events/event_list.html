@@ -1,0 +1,14 @@
+{% extends 'anonymous/base.html' %}
+
+{% block body %}
+<br>
+<div class="container">
+<h1>Events:</h1>
+{# listing all the events #}
+{% for event in event_list %}
+	<h2><a href="{% url 'tests:event_specifics' slug=event.slug %}">{{ event.name }}</a></h2>
+	
+</div>
+{% endfor %}
+
+{% endblock %}

@@ -1,5 +1,5 @@
 from django.views.generic import TemplateView
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from events.models import Events
 from events.forms import EventCreationForm
 # Create your views here.
@@ -40,7 +40,42 @@ class EventCreationView(TemplateView):
 				organisor = request.user
 				new_event.organisor = organisor
 
+
 				form_info.save()
 				success = True
 		args = {'form': form, 'success': success}
+		return render(request, self.template_name, args)
+
+
+#creating a list of all the events where the user can then choose from
+class EventsList(TemplateView):
+	template_name='events/event_list.html'
+
+	def get(self, request):
+		event_list = []
+		for event in Events.objects.all():
+			event_list.append(event)
+		args = {'event_list': event_list} 
+		return render(request, self.template_name, args)
+
+#A more detailed view of the event itself
+class EventSpecifics(TemplateView):
+	template_name = 'events/event_specifics.html'
+
+	def get(self, request, slug):
+		event = Events.objects.get_object_or_404(slug=slug)
+		args = {'event': event}
+		return render(request, self.template_name, args)
+	def post(self, request, slug):
+		user = request.user
+		event = Events.objects.get_object_or_404(slug=slug)
+
+		if user.is_authenticated:
+			event.attendees.add(request.user)
+			success = True
+			args = {'event': event, 'success': success}
+		else:
+			anonymous = True
+			args = {'event': event, 'anonymous': anonymous}
+
 		return render(request, self.template_name, args)

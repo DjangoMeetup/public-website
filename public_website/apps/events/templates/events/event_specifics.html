@@ -1,0 +1,59 @@
+{% extends 'anonymous/base.html' %}
+
+{% block body %}
+<br>
+{# success message #}
+{% if success %}
+<div class='alert alert-success' role='alert'>
+	<h3>Success</h3>
+	<h5>The info has been saved</h5>
+</div>
+
+{# if the user is not authenticated #}
+<div class='alert alert-danger' role='alert'>
+	<h3>Oh no!</h3>
+	<h5>Please login so we know who you are first.</h5>
+	
+</div>
+
+{% endif %}
+<h1>Event Details</h1>
+	<h2>{{ event.name }}</h2>
+	<h3>{{ event.description }}</h3>
+
+	<h3>Date: {{ event.day }}</h3>
+	<h3>Organisor: {{ event.organisor }}</h3>
+	<h3>Current Attendees:
+		<ul>
+			{% for attendee in event.attendees.all %}
+			<li>{{ attendee }}</li>
+			{% endfor %}
+		</ul>
+
+
+	{% if_user.authenticated %}
+	{# posts the user details which adds them to the list #}
+	<form method="post" action="">
+		{% csrf_token %}
+	<input type="submit" name="submit">		
+	</form>
+	{% else %}
+
+	<div class="alert-danger">
+		<input type="submit" name="submit" disabled>	
+	<h4>
+		Sorry, but you have to be logged in before you can sign up.
+	</h4>
+		<a href=# onclick="renderGlaze('{% url 'member:login' %}')">
+          Log In
+        </a>
+        <a href=# onclick="renderGlaze('{% url 'member:signup' %}')">
+          Sign Up
+        </a>
+	</div>
+	{% endif %}
+
+
+{% endblock %}
+
+<ul>
