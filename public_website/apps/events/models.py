@@ -4,7 +4,6 @@ from django.db import models
 from django.db import models
 
 from member.models import Person
-
 # Create your models here.
 
 

@@ -1,6 +1,7 @@
 from django import forms
 from events.models import Events
-from django.contrib.admin.widgets import AdminSplitDateTime
+#from django.contrib.admin.widgets import AdminSplitDateTime
+from events.widgets import XDSoftDateTimePickerInput
 
 
 
@@ -45,5 +46,8 @@ class EventCreationForm(forms.ModelForm):
 		model = Events
 		fields = ('name', 'description', 'day')
 		widgets = {
-		'day': AdminSplitDateTime(),
+		'day': XDSoftDateTimePickerInput(),
+		}
+		input_formats = {
+		'day': ['%d/%m/%Y %H:%M'],
 		}
