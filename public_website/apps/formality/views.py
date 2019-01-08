@@ -9,7 +9,7 @@ def evaluate_recaptcha(request, errors):
     recaptcha_response = request.POST.get('g-recaptcha-response')
     url = 'https://www.google.com/recaptcha/api/siteverify'
     values = {
-        'secret': settings.GOOGLE_RECAPTCHA_SECRET_KEY,
+        'secret': settings.GOOGLE_RECAPTCHA_PRIVATE_KEY,
         'response': recaptcha_response
     }
     data = urllib.parse.urlencode(values).encode()

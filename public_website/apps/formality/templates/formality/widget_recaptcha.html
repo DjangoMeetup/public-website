@@ -1,9 +1,6 @@
 
 <!-- Form component for Google's reCaptcha authentication -->
 
-<script src='https://www.google.com/recaptcha/api.js'></script>
+<script src="https://www.google.com/recaptcha/api.js"></script>
 
-{# This is currently my own public key for testing purposes, I am unsure if this was the right thing to do. Old public key is commented out below. (Felix) #}
-
-<div class="g-recaptcha" data-sitekey="6LeSJYQUAAAAAGV03StBNU_NQ-WrlH6DSUfNdeGL"></div>
-{# 6Ld-6HYUAAAAAKiCev1zraMoF7gpVnJJCfCsDOSS #}
+<div class="g-recaptcha" data-sitekey="{{ google_recaptcha_public_key }}"></div>

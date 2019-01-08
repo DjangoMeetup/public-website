@@ -1,13 +1,20 @@
 from django.views.generic import TemplateView
 from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse, HttpResponseNotFound
+from django.urls import reverse, reverse_lazy
+
 from events.models import Events
 from events.forms import EventCreationForm
-from django.http import HttpResponse, HttpResponseNotFound
+from glaze.views import GlazeMixin
 # Create your views here.
 
-class EventCreationView(TemplateView):
-	template_name = 'events/event_creation.html'
+class EventCreationView(GlazeMixin, TemplateView):
 
+	template_name = 'events/event_creation.html'
+    # Glaze overlay configuration
+	glaze_heading = 'Event Creation'
+	glaze_form_submit_name = 'Create'
+	glaze_form_action = reverse_lazy('event:event_creation')
 
 	def get(self, request):
 		#getting the form and submitting it to template
@@ -26,7 +33,7 @@ class EventCreationView(TemplateView):
 				new_event = form_info.save(commit=False)
 				name = form_info.cleaned_data['name']
 				day = form_info.cleaned_data['day']
-				
+
 				#address
 				address_1 = form_info.cleaned_data['address_1']
 				suburb = form_info.cleaned_data['suburb'] + ' '
@@ -56,7 +63,7 @@ class EventsList(TemplateView):
 		event_list = []
 		for event in Events.objects.all():
 			event_list.append(event)
-		args = {'event_list': event_list} 
+		args = {'event_list': event_list}
 		return render(request, self.template_name, args)
 
 #A more detailed view of the event itself

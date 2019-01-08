@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.http import HttpResponse, HttpResponseBadRequest, JsonResponse
 from django.template.loader import render_to_string
 
@@ -27,6 +28,7 @@ class GlazeMixin:
             context['glaze_form_action'] = self.glaze_form_action
         if (self.glaze_cancel_url is not None):
             context['glaze_cancel_url'] = self.glaze_cancel_url
+        context['google_recaptcha_public_key'] = settings.GOOGLE_RECAPTCHA_PUBLIC_KEY
         context = {**context, **self.glaze_callback_context}
         return context
 

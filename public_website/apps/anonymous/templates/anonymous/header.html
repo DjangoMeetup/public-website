@@ -18,11 +18,11 @@
         View Django Meetups
       </a>
       {# TODO: make it so the Glazr can be used again #}
-      <!---
-      <a class="nav-item nav-link text-primary pr-3 nav-start-meetup" href="#"  onclick="renderGlaze('{% url 'events:event_creation' %}')">
-        --->
-      <a class="nav-item nav-link text-primary pr-3 nav-start-meetup" href="{% url 'events:event_creation' %}">
 
+      <!---
+      <a class="nav-item nav-link text-primary pr-3 nav-start-meetup" href="{% url 'events:event_creation' %}">
+        --->
+      <a class="nav-item nav-link text-primary pr-3 nav-start-meetup" href="#"  onclick="renderGlaze('{% url 'events:event_creation' %}')">
         Start a Django Meetup
       </a>
       {% if user.is_authenticated %}
