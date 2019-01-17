@@ -11,8 +11,10 @@ from member.models import Person
 class Events(models.Model):
 	name = models.CharField(max_length=200, blank=True, default='Unnamed Event')
 	day = models.DateTimeField(default=now, blank=True )
-	description = models.CharField(max_length=1500, blank=True, null=True)
+	details = models.CharField(max_length=1500, blank=True, null=True)
 	slug = models.SlugField(max_length=255, default=name)
+
+	
 
 	attendees = models.ManyToManyField(Person, related_name='attendees', default='None', blank=True)
 	organisor = models.ForeignKey(Person, on_delete=models.CASCADE, related_name = 'organisor', null=True)

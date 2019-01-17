@@ -39,6 +39,7 @@ class GlazeMixin:
         is_form_valid = form.is_valid()
         if self.glaze_external_errors:
             for error in self.glaze_external_errors:
+                print(error)
                 form.add_error(None, error)
         super().post(request, *args, **kwargs)
         data = {}

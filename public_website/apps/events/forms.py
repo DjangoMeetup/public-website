@@ -22,7 +22,7 @@ class EventCreationForm(forms.ModelForm):
 		)
 
 	address_1 = forms.CharField(
-		label = 'Address Line 1',
+		label = 'Address',
 		required=True,
 		)
 	suburb = forms.CharField(
@@ -44,11 +44,34 @@ class EventCreationForm(forms.ModelForm):
 
 	class Meta:
 		model = Events
-		fields = ('name', 'description', 'day')
+		fields = ('name', 'details', 'day')
 		widgets = {
 		'day': XDSoftDateTimePickerInput(),
-		'description': forms.Textarea,		
+		'details': forms.Textarea,		
 		}
 		input_formats = {
 		'day': ['%d/%m/%Y %H:%M'],
 		}
+
+	# def save_info(self, user):
+	# 	print (True)
+	# 	new_event = self.save(commit=False)
+	# 	name = self.cleaned_data['name']
+	# 	print (name)
+	# 	day = self.cleaned_data['day']
+	# 	#address
+	# 	address_1 = self.cleaned_data['address_1']
+	# 	suburb = self.cleaned_data['suburb'] + ' '
+	# 	postcode = self.cleaned_data['postcode']
+	# 	state = self.cleaned_data['state'] + ' '
+
+	# 	address = '{}, {}{}{}'.format(address_1, suburb, state, postcode)
+	# 	new_event.address = address
+
+	# 	#organisor
+	# 	organisor = user
+	# 	new_event.organisor = organisor
+
+	
+	# 	self.save()
+	# 

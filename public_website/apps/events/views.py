@@ -2,19 +2,58 @@ from django.views.generic import TemplateView
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseNotFound
 from django.urls import reverse, reverse_lazy
+from django.views.generic.edit import FormView
 
 from events.models import Events
 from events.forms import EventCreationForm
 from glaze.views import GlazeMixin
 # Create your views here.
 
-class EventCreationView(GlazeMixin, TemplateView):
+# class EventCreationFormView(FormView, GlazeMixin):
+# 	form_class = EventCreationForm
+
+class EventCreationView(GlazeMixin, FormView):
+	form_class = EventCreationForm
+	success_url = reverse_lazy('events:event_list')
+	template_name = 'events/glaze_event_creation.html'
+	# Glaze configuration
+	glaze_heading = 'Create event'
+	glaze_form_heading = 'Create'
+	glaze_form_action = reverse_lazy('events:event_creation')
+
+	def finalize_post(self, request):
+		form_info = EventCreationForm(request.POST)
+		new_event = form_info.save(commit=False)
+		name = form_info.cleaned_data['name']
+		day = form_info.cleaned_data['day']
+
+		#address
+		address_1 = form_info.cleaned_data['address_1']
+		suburb = form_info.cleaned_data['suburb'] + ' '
+		postcode = form_info.cleaned_data['postcode']
+		state = form_info.cleaned_data['state'] + ' '
+
+		address = '{}, {}{}{}'.format(address_1, suburb, state, postcode)
+		new_event.address = address
+
+
+		#organisor
+		organisor = request.user
+		new_event.organisor = organisor
+
+
+		form_info.save()
+		success = True
+		print ('form saved')
+
+
+class TemplateEventCreationView(GlazeMixin, TemplateView):
 
 	template_name = 'events/event_creation.html'
     # Glaze overlay configuration
 	glaze_heading = 'Event Creation'
 	glaze_form_submit_name = 'Create'
-	glaze_form_action = reverse_lazy('event:event_creation')
+	glaze_form_action = reverse_lazy('events:event_creation')
 
 	def get(self, request):
 		#getting the form and submitting it to template
@@ -23,36 +62,8 @@ class EventCreationView(GlazeMixin, TemplateView):
 
 		return render(request, self.template_name, args)
 
-	def post(self, request):
-		form = EventCreationForm()
-		success = False
-
-		if request.user.is_authenticated:
-			form_info = EventCreationForm(request.POST)
-			if form_info.is_valid():
-				new_event = form_info.save(commit=False)
-				name = form_info.cleaned_data['name']
-				day = form_info.cleaned_data['day']
-
-				#address
-				address_1 = form_info.cleaned_data['address_1']
-				suburb = form_info.cleaned_data['suburb'] + ' '
-				postcode = form_info.cleaned_data['postcode']
-				state = form_info.cleaned_data['state'] + ' '
-
-				address = '{}, {}{}{}'.format(address_1, suburb, state, postcode)
-				new_event.address = address
-
-
-				#organisor
-				organisor = request.user
-				new_event.organisor = organisor
-
-
-				form_info.save()
-				success = True
-		args = {'form': form, 'success': success}
-		return render(request, self.template_name, args)
+	# def initialize_post(self, request):
+	# 	print ('initialized')
 
 
 #creating a list of all the events where the user can then choose from
