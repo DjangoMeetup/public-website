@@ -5,12 +5,29 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic.edit import FormView
 
 from events.models import Events
-from events.forms import EventCreationForm
+from events.forms import EventCreationForm, GroupRegisterForm, GroupCreationForm
 from glaze.views import GlazeMixin
 # Create your views here.
 
 # class EventCreationFormView(FormView, GlazeMixin):
 # 	form_class = EventCreationForm
+
+class GroupRegisterView(FormView, GlazeMixin):
+	form_class = GroupRegisterForm
+	template_name = 'events/event_basic_forms.html'
+	#success_url = reverse_lazy('anonymous:home')
+	laze_heading = 'Join Group'
+	glaze_form_heading = 'Join'
+	glaze_form_action = reverse_lazy('events:group_register')
+
+class GroupCreationView(FormView, GlazeMixin):
+	form_class = GroupCreationForm
+	template_name = 'events/event_basic_forms.html'
+	#success_url = reverse_lazy('anonymous:home')
+
+	laze_heading = 'Create Group'
+	glaze_form_heading = 'Create'
+	glaze_form_action = reverse_lazy('events:group_creation')
 
 class EventCreationView(GlazeMixin, FormView):
 	form_class = EventCreationForm
@@ -22,7 +39,7 @@ class EventCreationView(GlazeMixin, FormView):
 	glaze_form_action = reverse_lazy('events:event_creation')
 
 	def finalize_post(self, request):
-		form_info = EventCreationForm(request.POST)
+		form_info = self.object
 		new_event = form_info.save(commit=False)
 		name = form_info.cleaned_data['name']
 		day = form_info.cleaned_data['day']

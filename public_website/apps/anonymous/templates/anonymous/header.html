@@ -17,13 +17,19 @@
 
         View Django Meetups
       </a>
-      {# TODO: make it so the Glazr can be used again #}
+      {# TODO: make it so the Glaze can be used again #}
 
       <!---
       <a class="nav-item nav-link text-primary pr-3 nav-start-meetup" href="{% url 'events:event_creation' %}">
         --->
       <a class="nav-item nav-link text-primary pr-3 nav-start-meetup" href="#"  onclick="renderGlaze('{% url 'events:event_creation' %}')">
         Start a Django Meetup
+      </a>
+      <a class="nav-item nav-link text-primary pr-3 nav-start-meetup" href="#"  onclick="renderGlaze('{% url 'events:group_creation' %}')">
+        Start a Django Meetup Group
+      </a>
+      <a class="nav-item nav-link text-primary pr-3 nav-start-meetup" href="#"  onclick="renderGlaze('{% url 'events:group_register' %}')">
+        Join a Django Meetup group
       </a>
       {% if user.is_authenticated %}
         <a class="nav-item nav-link pl-3" href=# onclick="renderGlaze('{% url 'member:logout' %}')">

@@ -1,10 +1,17 @@
 from django import forms
-from events.models import Events
+from events.models import Events, EventGroups
 #from django.contrib.admin.widgets import AdminSplitDateTime
 from events.widgets import XDSoftDateTimePickerInput
 
 
+class GroupCreationForm(forms.ModelForm):
+	
+	class Meta:
+		model = EventGroups
+		fields = ('name', 'details')
 
+class GroupRegisterForm(forms.Form):
+	groups = forms.ModelMultipleChoiceField(queryset=EventGroups.objects.all())
 
 
 
