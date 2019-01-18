@@ -1,57 +1,115 @@
 from django.views.generic import TemplateView
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, HttpResponseNotFound
+from django.http import HttpResponse, HttpResponseNotFound, JsonResponse, HttpResponseBadRequest
+
 from django.urls import reverse, reverse_lazy
+from django.views.generic.edit import FormView
 
-from events.models import Events
-from events.forms import EventCreationForm
+from events.models import Events, EventGroups
+from events.forms import EventCreationForm, GroupRegisterForm, GroupCreationForm
 from glaze.views import GlazeMixin
-# Create your views here.
 
-class EventCreationView(GlazeMixin, TemplateView):
+
+#note to-self, if you're getting the 405 error whilst using the mixin. 
+#Make sure the GlazeMixin inheritance is first, not the formview
+
+class GroupRegisterView(GlazeMixin, FormView):
+	form_class = GroupRegisterForm
+	template_name = 'events/event_basic_forms.html'
+	success_url = reverse_lazy('events:event_list')
+	glaze_heading = 'Join Group'
+	glaze_form_heading = 'Join'
+	is_success = True
+	glaze_form_action = reverse_lazy('events:group_register')
+
+	def finalize_post(self, request):
+
+		form_info = GroupRegisterForm(request.POST)
+		if form_info.is_valid():
+			groups = form_info.cleaned_data['groups']
+			for group in groups:
+				group.main_user_group.add(request.user)
+
+	
+
+class GroupCreationView(GlazeMixin, FormView):
+	form_class = GroupCreationForm
+	template_name = 'events/event_basic_forms.html'
+	success_url = reverse_lazy('events:event_list')
+
+	laze_heading = 'Create Group'
+	glaze_form_heading = 'Create'
+	glaze_form_action = reverse_lazy('events:group_creation')
+
+	def finalize_post(self, request):
+
+		form_info = GroupCreationForm(request.POST)
+		if form_info.is_valid():
+			form_info.save()
+			name = form_info.cleaned_data['name']
+			
+			new_group = EventGroups.objects.get(name=name)
+			new_group.organisor_group.add(request.user)
+
+class EventCreationView(GlazeMixin, FormView):
+	form_class = EventCreationForm
+	success_url = reverse_lazy('events:event_list')
+	template_name = 'events/glaze_event_creation.html'
+	# Glaze configuration
+	glaze_heading = 'Create event'
+	glaze_form_heading = 'Create'
+	glaze_form_action = reverse_lazy('events:event_creation')
+
+	def get_form_kwargs(self, **kwargs):
+		user = self.request.user
+		form_kwargs = super(EventCreationView, self).get_form_kwargs()
+		form_kwargs.update({
+			'user': user 
+			})
+		return form_kwargs
+
+
+
+	def finalize_post(self, request):
+		form_info = self.get_form()
+
+
+		if form_info.is_valid():
+			print ('form valid!')
+			info = form_info.save(commit=False)
+			name = form_info.cleaned_data['name']
+			day = form_info.cleaned_data['day']
+			group = form_info.cleaned_data['group']
+
+			#address
+			address_1 = form_info.cleaned_data['address_1']
+			suburb = form_info.cleaned_data['suburb'] + ' '
+			postcode = form_info.cleaned_data['postcode']
+			state = form_info.cleaned_data['state'] + ' '
+
+			address = '{}, {}{}{}'.format(address_1, suburb, state, postcode)
+			info.address = address
+
+
+			info.save()
+			#organisor
+			organisor = request.user
+			info.organisor = organisor
+
+
+class TemplateEventCreationView(GlazeMixin, TemplateView):
 
 	template_name = 'events/event_creation.html'
     # Glaze overlay configuration
 	glaze_heading = 'Event Creation'
 	glaze_form_submit_name = 'Create'
-	glaze_form_action = reverse_lazy('event:event_creation')
+	glaze_form_action = reverse_lazy('events:event_creation')
 
 	def get(self, request):
 		#getting the form and submitting it to template
 		form = EventCreationForm()
 		args = {'form': form}
 
-		return render(request, self.template_name, args)
-
-	def post(self, request):
-		form = EventCreationForm()
-		success = False
-
-		if request.user.is_authenticated:
-			form_info = EventCreationForm(request.POST)
-			if form_info.is_valid():
-				new_event = form_info.save(commit=False)
-				name = form_info.cleaned_data['name']
-				day = form_info.cleaned_data['day']
-
-				#address
-				address_1 = form_info.cleaned_data['address_1']
-				suburb = form_info.cleaned_data['suburb'] + ' '
-				postcode = form_info.cleaned_data['postcode']
-				state = form_info.cleaned_data['state'] + ' '
-
-				address = '{}, {}{}{}'.format(address_1, suburb, state, postcode)
-				new_event.address = address
-
-
-				#organisor
-				organisor = request.user
-				new_event.organisor = organisor
-
-
-				form_info.save()
-				success = True
-		args = {'form': form, 'success': success}
 		return render(request, self.template_name, args)
 
 
@@ -92,3 +150,4 @@ class EventSpecifics(TemplateView):
 			args = {'event': event, 'anonymous': anonymous}
 
 		return render(request, self.template_name, args)
+

@@ -1,10 +1,21 @@
 from django import forms
-from events.models import Events
+from events.models import Events, EventGroups
 #from django.contrib.admin.widgets import AdminSplitDateTime
 from events.widgets import XDSoftDateTimePickerInput
 
 
+class GroupCreationForm(forms.ModelForm):
+	
+	class Meta:
+		model = EventGroups
+		fields = ('name', 'details')
 
+		widgets = {
+		'details': forms.Textarea,		
+		}
+
+class GroupRegisterForm(forms.Form):
+	groups = forms.ModelMultipleChoiceField(queryset=EventGroups.objects.all())
 
 
 
@@ -22,7 +33,7 @@ class EventCreationForm(forms.ModelForm):
 		)
 
 	address_1 = forms.CharField(
-		label = 'Address Line 1',
+		label = 'Address',
 		required=True,
 		)
 	suburb = forms.CharField(
@@ -44,11 +55,18 @@ class EventCreationForm(forms.ModelForm):
 
 	class Meta:
 		model = Events
-		fields = ('name', 'description', 'day')
+		fields = ('name', 'details', 'day', 'group')
+
 		widgets = {
 		'day': XDSoftDateTimePickerInput(),
-		'description': forms.Textarea,		
+		'details': forms.Textarea,		
 		}
 		input_formats = {
 		'day': ['%d/%m/%Y %H:%M'],
 		}
+	
+	def __init__(self, *args, **kwargs):
+		user = kwargs.pop('user', None)
+
+		super(EventCreationForm, self).__init__(*args, **kwargs)
+		self.fields['group'].queryset = EventGroups.objects.filter(main_user_group=user)

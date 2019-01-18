@@ -15,7 +15,7 @@
   {% endif %}
 
   <div class="container">
-  	<form method="post" action="">
+  	<form method="post" action="{% url 'events:event_creation' %}">
   		<h2>Create Event</h2>
   		{% csrf_token %}
       	{% include 'bf_form.html' with form=form %}
