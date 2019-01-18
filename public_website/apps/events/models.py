@@ -27,7 +27,7 @@ class Events(models.Model):
 	details = models.CharField(max_length=1500, blank=True, null=True)
 	slug = models.SlugField(max_length=255, default=name)
 
-	
+	group = models.ForeignKey(EventGroups, on_delete=models.CASCADE, null=True)
 
 	attendees = models.ManyToManyField(Person, related_name='attendees', default='None', blank=True)
 	organisor = models.ForeignKey(Person, on_delete=models.CASCADE, related_name = 'event_organisor', null=True)

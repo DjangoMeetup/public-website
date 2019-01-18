@@ -10,6 +10,10 @@ class GroupCreationForm(forms.ModelForm):
 		model = EventGroups
 		fields = ('name', 'details')
 
+		widgets = {
+		'details': forms.Textarea,		
+		}
+
 class GroupRegisterForm(forms.Form):
 	groups = forms.ModelMultipleChoiceField(queryset=EventGroups.objects.all())
 
@@ -51,7 +55,8 @@ class EventCreationForm(forms.ModelForm):
 
 	class Meta:
 		model = Events
-		fields = ('name', 'details', 'day')
+		fields = ('name', 'details', 'day', 'group')
+
 		widgets = {
 		'day': XDSoftDateTimePickerInput(),
 		'details': forms.Textarea,		
@@ -59,26 +64,9 @@ class EventCreationForm(forms.ModelForm):
 		input_formats = {
 		'day': ['%d/%m/%Y %H:%M'],
 		}
-
-	# def save_info(self, user):
-	# 	print (True)
-	# 	new_event = self.save(commit=False)
-	# 	name = self.cleaned_data['name']
-	# 	print (name)
-	# 	day = self.cleaned_data['day']
-	# 	#address
-	# 	address_1 = self.cleaned_data['address_1']
-	# 	suburb = self.cleaned_data['suburb'] + ' '
-	# 	postcode = self.cleaned_data['postcode']
-	# 	state = self.cleaned_data['state'] + ' '
-
-	# 	address = '{}, {}{}{}'.format(address_1, suburb, state, postcode)
-	# 	new_event.address = address
-
-	# 	#organisor
-	# 	organisor = user
-	# 	new_event.organisor = organisor
-
 	
-	# 	self.save()
-	# 
+	def __init__(self, *args, **kwargs):
+		user = kwargs.pop('user', None)
+
+		super(EventCreationForm, self).__init__(*args, **kwargs)
+		self.fields['group'].queryset = EventGroups.objects.filter(main_user_group=user)

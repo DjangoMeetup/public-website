@@ -1,6 +1,7 @@
 from django.views.generic import TemplateView
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, HttpResponseNotFound
+from django.http import HttpResponse, HttpResponseNotFound, JsonResponse, HttpResponseBadRequest
+
 from django.urls import reverse, reverse_lazy
 from django.views.generic.edit import FormView
 
@@ -59,30 +60,41 @@ class EventCreationView(GlazeMixin, FormView):
 	glaze_form_heading = 'Create'
 	glaze_form_action = reverse_lazy('events:event_creation')
 
+	def get_form_kwargs(self, **kwargs):
+		user = self.request.user
+		form_kwargs = super(EventCreationView, self).get_form_kwargs()
+		form_kwargs.update({
+			'user': user 
+			})
+		return form_kwargs
+
+
+
 	def finalize_post(self, request):
-		form_info = EventCreationForm(request.POST)
-		new_event = form_info.save(commit=False)
-		name = form_info.cleaned_data['name']
-		day = form_info.cleaned_data['day']
-
-		#address
-		address_1 = form_info.cleaned_data['address_1']
-		suburb = form_info.cleaned_data['suburb'] + ' '
-		postcode = form_info.cleaned_data['postcode']
-		state = form_info.cleaned_data['state'] + ' '
-
-		address = '{}, {}{}{}'.format(address_1, suburb, state, postcode)
-		new_event.address = address
+		form_info = self.get_form()
 
 
-		#organisor
-		organisor = request.user
-		new_event.organisor = organisor
+		if form_info.is_valid():
+			print ('form valid!')
+			info = form_info.save(commit=False)
+			name = form_info.cleaned_data['name']
+			day = form_info.cleaned_data['day']
+			group = form_info.cleaned_data['group']
+
+			#address
+			address_1 = form_info.cleaned_data['address_1']
+			suburb = form_info.cleaned_data['suburb'] + ' '
+			postcode = form_info.cleaned_data['postcode']
+			state = form_info.cleaned_data['state'] + ' '
+
+			address = '{}, {}{}{}'.format(address_1, suburb, state, postcode)
+			info.address = address
 
 
-		form_info.save()
-		success = True
-		print ('form saved')
+			info.save()
+			#organisor
+			organisor = request.user
+			info.organisor = organisor
 
 
 class TemplateEventCreationView(GlazeMixin, TemplateView):
@@ -99,9 +111,6 @@ class TemplateEventCreationView(GlazeMixin, TemplateView):
 		args = {'form': form}
 
 		return render(request, self.template_name, args)
-
-	# def initialize_post(self, request):
-	# 	print ('initialized')
 
 
 #creating a list of all the events where the user can then choose from
@@ -141,3 +150,4 @@ class EventSpecifics(TemplateView):
 			args = {'event': event, 'anonymous': anonymous}
 
 		return render(request, self.template_name, args)
+
