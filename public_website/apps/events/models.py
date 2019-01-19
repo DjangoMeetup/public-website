@@ -8,6 +8,11 @@ from member.models import Person
 # Create your models here.
 
 
+class UserEventGroupManager(models.Manager):
+	def get_queryset(self, request):
+		queryset = EventGroups.objects.filter(main_user_group=request.user)
+		return queryset
+
 class EventGroups(models.Model):
 	name = models.CharField(max_length=200, blank=True, default='Event Group', unique=True)
 	details = models.CharField(max_length=1500, blank=True, null=True)

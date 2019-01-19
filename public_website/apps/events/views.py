@@ -5,7 +5,7 @@ from django.http import HttpResponse, HttpResponseNotFound, JsonResponse, HttpRe
 from django.urls import reverse, reverse_lazy
 from django.views.generic.edit import FormView
 
-from events.models import Events, EventGroups
+from events.models import Events, EventGroups, UserEventGroupManager
 from events.forms import EventCreationForm, GroupRegisterForm, GroupCreationForm
 from glaze.views import GlazeMixin
 
@@ -83,9 +83,9 @@ class EventCreationView(GlazeMixin, FormView):
 
 			#address
 			address_1 = form_info.cleaned_data['address_1']
-			suburb = form_info.cleaned_data['suburb'] + ' '
+			suburb = form_info.cleaned_data['suburb'] + ', '
 			postcode = form_info.cleaned_data['postcode']
-			state = form_info.cleaned_data['state'] + ' '
+			state = form_info.cleaned_data['state'] + ', '
 
 			address = '{}, {}{}{}'.format(address_1, suburb, state, postcode)
 			info.address = address
@@ -97,20 +97,20 @@ class EventCreationView(GlazeMixin, FormView):
 			info.organisor = organisor
 
 
-class TemplateEventCreationView(GlazeMixin, TemplateView):
+# class TemplateEventCreationView(GlazeMixin, TemplateView):
 
-	template_name = 'events/event_creation.html'
-    # Glaze overlay configuration
-	glaze_heading = 'Event Creation'
-	glaze_form_submit_name = 'Create'
-	glaze_form_action = reverse_lazy('events:event_creation')
+# 	template_name = 'events/event_creation.html'
+#     # Glaze overlay configuration
+# 	glaze_heading = 'Event Creation'
+# 	glaze_form_submit_name = 'Create'
+# 	glaze_form_action = reverse_lazy('events:event_creation')
 
-	def get(self, request):
-		#getting the form and submitting it to template
-		form = EventCreationForm()
-		args = {'form': form}
+# 	def get(self, request):
+# 		#getting the form and submitting it to template
+# 		form = EventCreationForm()
+# 		args = {'form': form}
 
-		return render(request, self.template_name, args)
+# 		return render(request, self.template_name, args)
 
 
 #creating a list of all the events where the user can then choose from
@@ -118,6 +118,7 @@ class EventsList(TemplateView):
 	template_name='events/event_list.html'
 
 	def get(self, request):
+		#retrieve's and lists all the events
 		event_list = []
 		for event in Events.objects.all():
 			event_list.append(event)
@@ -129,25 +130,63 @@ class EventSpecifics(TemplateView):
 	template_name = 'events/event_specifics.html'
 
 	def get(self, request, slug):
+		is_group = False
+
+		# google_url
+
+
+		#Try and get the event corresponding to the slug.
+		#get or 404 causes other problems, so I reccommend you don't try and use it
 		try:
 			event = Events.objects.get(slug=slug)
+			got_event = True
 		except:
 			return HttpResponseNotFound('<h1>Page not found</h1>')
-		args = {'event': event}
+
+		#if the user is part in the event pass a true variable to the template
+		if got_event:
+			# google urls
+
+			address_str = str(event.address)
+			position_no_comma = address_str.replace(',', '%2C')
+			position_no_space = position_no_comma.replace(' ', '+')
+			google_url = "https://www.google.com/maps/search/" + position_no_space
+			print (google_url)
+			args = {'event': event, 'google_url': google_url}
+			# get a list of all the groups the user is in
+			user_groups = [_event for _event in UserEventGroupManager().get_queryset(request).all()]
+			if event.group in user_groups:
+				is_group = True
+				args['is_group'] = is_group
+
 		return render(request, self.template_name, args)
 	def post(self, request, slug):
 		user = request.user
 		try:
 			event = Events.objects.get(slug=slug)
+			got_event = True
 		except:
 			return HttpResponseNotFound('<h1>Page not found</h1>')
+
+		if got_event:
+			address_str = str(event.address)
+			position_no_comma = address_str.replace(',', '%2C')
+			position_no_space = position_no_comma.replace(' ', '+')
+			google_url = "https://www.google.com/maps/search/" + position_no_space
+			print (google_url)
+			args = {'event': event, 'google_url': google_url}
+			# get a list of all the groups the user is in
+			user_groups = [_event for _event in UserEventGroupManager().get_queryset(request).all()]
+			if event.group in user_groups:
+				args['is_group'] = True
+
 		if user.is_authenticated:
 			event.attendees.add(request.user)
 			success = True
-			args = {'event': event, 'success': success}
+			args['success'] = success
 		else:
 			anonymous = True
-			args = {'event': event, 'anonymous': anonymous}
+			args['anonymous'] = anonymous
 
 		return render(request, self.template_name, args)
 

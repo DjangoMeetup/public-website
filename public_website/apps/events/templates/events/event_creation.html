@@ -8,10 +8,13 @@
 
   {# success message #}
   {% if success %}
+<div class="container">
+  
   <div class='alert alert-success' role='alert'>
-  	<h3>Success</h3>
-  	<h5>The info has been saved</h5>
+  	<h3>Success!</h3>
+  	<h5>Your event has been created!</h5>
   </div>
+</div>
   {% endif %}
 
   <div class="container">
@@ -47,3 +50,6 @@
 
 {# otjher script blocks were causing for the datetimepicker not to function properly #}
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+{# might want to use this for the locations fields #}
+{# https://developers.google.com/maps/documentation/javascript/places-autocomplete #}
