@@ -151,8 +151,22 @@ class EventSpecifics(TemplateView):
 			position_no_comma = address_str.replace(',', '%2C')
 			position_no_space = position_no_comma.replace(' ', '+')
 			google_url = "https://www.google.com/maps/search/" + position_no_space
-			print (google_url)
-			args = {'event': event, 'google_url': google_url}
+
+			#datetime
+			date = event.day
+			day = date.date.day()
+			month = date.date.month()
+			year = date.date.year()
+
+			print ('year: ' + str(year))
+
+			args = {
+			'year': year,
+			'month': month,
+			'day': day,
+			'event': event, 
+			'google_url': google_url
+			}
 			# get a list of all the groups the user is in
 			user_groups = [_event for _event in UserEventGroupManager().get_queryset(request).all()]
 			if event.group in user_groups:
@@ -173,8 +187,21 @@ class EventSpecifics(TemplateView):
 			position_no_comma = address_str.replace(',', '%2C')
 			position_no_space = position_no_comma.replace(' ', '+')
 			google_url = "https://www.google.com/maps/search/" + position_no_space
-			print (google_url)
-			args = {'event': event, 'google_url': google_url}
+			
+			#datetime
+			date = event.day
+			day = date.date.day()
+			month = date.date.month()
+			year = date.date.year()
+
+			print ('year_post: ' + str(year))
+			args = {
+			'year': year,
+			'month': month,
+			'day': day,
+			'event': event, 
+			'google_url': google_url
+			}
 			# get a list of all the groups the user is in
 			user_groups = [_event for _event in UserEventGroupManager().get_queryset(request).all()]
 			if event.group in user_groups:
