@@ -38,17 +38,24 @@
 
 
 <div class="container">
-	<h1>{{ event.name }}</h1>
+	<div class='event-heading'>
+		<div class='event-heading-details'>
+			<h1>{{ event.name }}</h1>
+			<div class='event-specific-heading-details'>
+				<h5><i class="fa fa-user"></i> Organised by {{ event.organisor }}, from {{ event.group }}</h5>
+				<p id='event-date'><i class="fa fa-calendar" aria-hidden="true"></i> {{ event.day }}</p>
+
+			</div>
+		</div>
+		
+	</div>
 	<hr>
 	<p>{{ event.details }}</p>
 
-	<h3>Group: {{ event.group }}</h3>
 
-	<h3>Date: {{ event.day }}</h3>
 	<h3>Location: {{ event.address }}</h3>
 	<h5 style="text-indent: 5vw;"><a href="{{ google_url }}">View in Google Maps</a></h5>
 
-	<h3>Organisor: {{ event.organisor }}</h3>
 	<h3>Current Attendees:
 		<ul>
 			{% for attendee in event.attendees.all %}

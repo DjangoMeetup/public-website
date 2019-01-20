@@ -154,11 +154,10 @@ class EventSpecifics(TemplateView):
 
 			#datetime
 			date = event.day
-			day = date.date.day()
-			month = date.date.month()
-			year = date.date.year()
-
-			print ('year: ' + str(year))
+			print (type(date))
+			day = date.day
+			month = date.month
+			year = date.year
 
 			args = {
 			'year': year,
@@ -168,10 +167,11 @@ class EventSpecifics(TemplateView):
 			'google_url': google_url
 			}
 			# get a list of all the groups the user is in
-			user_groups = [_event for _event in UserEventGroupManager().get_queryset(request).all()]
-			if event.group in user_groups:
-				is_group = True
-				args['is_group'] = is_group
+			if request.user.is_authenticated:
+				user_groups = [_event for _event in UserEventGroupManager().get_queryset(request).all()]
+				if event.group in user_groups:
+					is_group = True
+					args['is_group'] = is_group
 
 		return render(request, self.template_name, args)
 	def post(self, request, slug):
@@ -190,11 +190,11 @@ class EventSpecifics(TemplateView):
 			
 			#datetime
 			date = event.day
-			day = date.date.day()
-			month = date.date.month()
-			year = date.date.year()
+			print (type(date))
+			day = date.day
+			month = date.month
+			year = date.year
 
-			print ('year_post: ' + str(year))
 			args = {
 			'year': year,
 			'month': month,
@@ -203,9 +203,11 @@ class EventSpecifics(TemplateView):
 			'google_url': google_url
 			}
 			# get a list of all the groups the user is in
-			user_groups = [_event for _event in UserEventGroupManager().get_queryset(request).all()]
-			if event.group in user_groups:
-				args['is_group'] = True
+			if request.user.is_authenticated:
+				user_groups = [_event for _event in UserEventGroupManager().get_queryset(request).all()]
+				if event.group in user_groups:
+					is_group = True
+					args['is_group'] = is_gro
 
 		if user.is_authenticated:
 			event.attendees.add(request.user)
