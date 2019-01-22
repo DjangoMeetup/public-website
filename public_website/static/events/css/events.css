@@ -1,17 +1,17 @@
-#event_list-col {
+.event_list-col {
 	margin-left: 0 ! important;
 	margin-right: 0 ! important;
 }
-#event_list-card {
+.event_list-card {
 	width: max-content;
 }
 
 
-#event_list-calendar{
-	min-width: min-content;
+.event_list-calendar{
+	min-width: 90px;
 }
 
-#event_list-month{
+.event_list-month{
 	background-color: #f44245;
 	text-align: center;
 	border-radius: 4px 4px 0 0;
@@ -20,9 +20,9 @@
 	border-width: 3px 3px 0 3px;
 }
 
-#event_list-date{
+.event_list-date{
 	border-style: solid;
 	border-width: 3px 3px 3px 3px;
 	border-radius: 0 0 4px 4px;
-	text-align: center
+	text-align: center;
 }

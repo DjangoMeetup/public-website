@@ -11,8 +11,8 @@
             <a href="{% url 'events:event_specifics' slug=event.slug %}">
                 
 
-            <div class="col-md-6 col-lg-4 mx-3 no-gutters" id="event_list-col">
-            	<div class="card" id="event_list-card">
+            <div class="col-md-6 col-lg-4 mx-3 no-gutters event_list-col">
+            	<div class="card event_list-card">
             		{% if event.image %}
 	            		<img class="card-img-top" src="{{ event.image.url }}">
 	            	{% else %}
@@ -20,11 +20,11 @@
 	            	{% endif %}
             		<div class="card-body row" >
 
-            			<div class="col-2" id="event_list-calendar">
+            			<div class="col-2 event_list-calendar">
 							<div>
-								<h5 id="event_list-month">{{ event.day.month }}</h5>
+								<h5 class="event_list-month">{{ event.day.month }}</h5>
 							</div>
-							<div id="event_list-date">
+							<div class="event_list-date">
 								<h3>{{ event.day.day }}</h3>
 							</div>            				
             			</div>
