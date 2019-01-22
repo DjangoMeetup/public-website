@@ -1,8 +1,26 @@
+.event_list-link{
+	margin: 5px 5px 5px 5px;
+	border-radius: 15px 15px 15px 15px;
+
+}
+.event_list-link:hover, .event_list-link:focus, .event_list-link:active {
+      text-decoration: none;
+      color: inherit;
+      -webkit-box-shadow: 10px 10px 15px gray;
+      -moz-box-shadow: 10px 10px 15px gray;
+ }
+
+.event_list-col {
+	padding: 0 ! important;
+	margin: 0 !important;
+}
+
 .event_list-card {
 	box-sizing: border-box;
+	border-radius: 15px 15px 15px 15px;
 	width: 100%;
 	overflow: hidden;
-	margin-bottom: 5px;
+	/*margin-bottom: 5px;*/
 	/*padding: 0;*/
 }
 

@@ -8,10 +8,10 @@
 <div class="container-fluid">
 	<div class="row" style="justify-content: center;">
             {% for event in event_list %}
-            <a href="{% url 'events:event_specifics' slug=event.slug %}">
+            <a class="event_list-link" href="{% url 'events:event_specifics' slug=event.slug %}">
                 
 
-            <div class="col mx-3 event_list-col">
+            <div class="col event_list-col">
                   <div class="card event_list-card">
                         
       		{% if event.image %}
