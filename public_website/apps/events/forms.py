@@ -55,7 +55,7 @@ class EventCreationForm(forms.ModelForm):
 
 	class Meta:
 		model = Events
-		fields = ('name', 'details', 'day', 'group')
+		fields = ('name', 'details', 'image', 'day', 'group')
 
 		widgets = {
 		'day': XDSoftDateTimePickerInput(),
