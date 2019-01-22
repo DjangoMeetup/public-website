@@ -1,6 +1,6 @@
 # Preserve alphabetical order.
 
-Django==2.1.4
+Django>=2.1.5
 django-clear-cache==0.3
 django-compressor==2.2
 django-widget-tweaks==1.4.3
