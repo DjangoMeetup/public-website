@@ -126,7 +126,7 @@ class EventsList(TemplateView):
 	def get(self, request):
 		#retrieve's and lists all the events
 		event_list = []
-		for event in Events.objects.all():
+		for event in Events.objects.all().order_by('day'):
 			event_list.append(event)
 		args = {
 			'event_list': event_list,
