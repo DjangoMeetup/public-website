@@ -122,7 +122,9 @@ class EventsList(TemplateView):
 		event_list = []
 		for event in Events.objects.all():
 			event_list.append(event)
-		args = {'event_list': event_list}
+		args = {
+			'event_list': event_list,
+			}
 		return render(request, self.template_name, args)
 
 #A more detailed view of the event itself
