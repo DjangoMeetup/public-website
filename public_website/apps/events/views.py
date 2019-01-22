@@ -62,11 +62,17 @@ class EventCreationView(GlazeMixin, FormView):
 
 	def get_form_kwargs(self, **kwargs):
 		user = self.request.user
-		form_kwargs = super(EventCreationView, self).get_form_kwargs()
-		form_kwargs.update({
-			'user': user 
-			})
-		return form_kwargs
+		if user.is_authenticated:
+			print ('not authenticated')
+			form_kwargs = super(EventCreationView, self).get_form_kwargs()
+			form_kwargs.update({
+				'user': user 
+				})
+
+			return form_kwargs
+		else:
+			form_kwargs = super(EventCreationView, self).get_form_kwargs()
+			return form_kwargs
 
 
 
