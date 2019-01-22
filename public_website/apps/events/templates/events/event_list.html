@@ -6,22 +6,25 @@
 <h1>Events:</h1>
 {# listing all the events #}
 <div class="container-fluid">
-	<div class="row" style="justify-content: center;">
+	<div class="row no-gutters" style="justify-content: center;">
             {% for event in event_list %}
-            <div class="col-md-6 col-lg-4 mx-3">
-            	<div class="card">
+            <a href="{% url 'events:event_specifics' slug=event.slug %}">
+                
+
+            <div class="col-md-6 col-lg-4 mx-3 no-gutters" id="event_list-col">
+            	<div class="card" id="event_list-card">
             		{% if event.image %}
 	            		<img class="card-img-top" src="{{ event.image.url }}">
 	            	{% else %}
 	            		<h1>Image</h1>
 	            	{% endif %}
-            		<div class="card-body row">
+            		<div class="card-body row" >
 
-            			<div class="col-sm-1">
-							<div class=row style="background-color: red;">
+            			<div class="col-2" id="event_list-calendar">
+							<div>
 								<h5 id="event_list-month">{{ event.day.month }}</h5>
 							</div>
-							<div class="row" id="event_list-date" style="background-color: orange;">
+							<div id="event_list-date">
 								<h3>{{ event.day.day }}</h3>
 							</div>            				
             			</div>
@@ -34,19 +37,9 @@
 
             		</div>
             	</div>
+            </a>
             {% endfor %}
         </div>
 </div>
-{% for event in event_list %}
-
-
-<div class="container rounded" style="border-style:solid;
-    border-width:0.2em">
-    	
-	<h2><a href="{% url 'events:event_specifics' slug=event.slug %}">{{ event.name }}</a></h2>
-    </div>
-	
-</div>
-{% endfor %}
 
 {% endblock %}
