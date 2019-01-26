@@ -1,0 +1,231 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta content="This chapter provides a quick start overview of the Django Meetup public website." name="description" />
+<meta content="Django Meetup, quick installation, quick start, quickstart" name="keywords" />
+
+    <title>Quick Installation &#8212; Django Meetup 0.0.1 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Download Project" href="02_download-project.html" />
+    <link rel="prev" title="Django Meetup - Overview" href="../index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="quick-installation">
+<h1>Quick Installation<a class="headerlink" href="#quick-installation" title="Permalink to this headline">¶</a></h1>
+<p>For those already comfortable with the process, this section provides a skeleton of the steps involved.</p>
+<p>Note, you would of course need to insert the name of your git repository when you see <strong>&lt;yourrepo&gt;</strong>. Also, these steps use github’s HTTPS cloning method (as opposed to SSH).</p>
+<p>If you prefer, you can follow the full instructions in the subsequent sections.</p>
+<hr class="docutils" />
+<div class="section" id="on-linux-mac">
+<h2>On Linux/Mac:<a class="headerlink" href="#on-linux-mac" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="download-project">
+<h3>Download Project<a class="headerlink" href="#download-project" title="Permalink to this headline">¶</a></h3>
+<p>Create your project directory: <code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">DjangoMeetup</span></code></p>
+<p>Change to project directory: <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">DjangoMeetup</span></code></p>
+<p>Fork the project from: <code class="docutils literal notranslate"><span class="pre">https://github.com/DjangoMeetup/public-website</span></code></p>
+<p>Clone the project: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/&lt;yourrepo&gt;/public-website.git</span></code></p>
+</div>
+<div class="section" id="virtual-environment">
+<h3>Virtual Environment<a class="headerlink" href="#virtual-environment" title="Permalink to this headline">¶</a></h3>
+<p>Create a virtual environment: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">venv</span> <span class="pre">env</span></code></p>
+<p>Activate your environment: <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">env/bin/activate</span></code></p>
+</div>
+<div class="section" id="load-packages">
+<h3>Load Packages<a class="headerlink" href="#load-packages" title="Permalink to this headline">¶</a></h3>
+<p>Install packages: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">requirements/dev.txt</span></code></p>
+</div>
+<div class="section" id="migrate-database">
+<h3>Migrate Database<a class="headerlink" href="#migrate-database" title="Permalink to this headline">¶</a></h3>
+<p>Run migrations: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">manage.py</span> <span class="pre">makemigrations</span></code></p>
+<p>Run migrate: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">manage.py</span> <span class="pre">migrate</span></code></p>
+</div>
+<div class="section" id="environment-variables">
+<h3>Environment Variables<a class="headerlink" href="#environment-variables" title="Permalink to this headline">¶</a></h3>
+<p>Create the environent file <strong>.env</strong> and add:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DEBUG</span><span class="o">=</span><span class="kc">True</span>
+<span class="n">DOMAIN</span><span class="o">=</span><span class="n">localhost</span>
+<span class="n">SECRET_KEY</span><span class="o">=-</span><span class="c1">#^op)l91*7@$4qthsxjjs7dl1*-@1$l11^je_@@&amp;3h9&amp;ipe#w</span>
+<span class="n">GOOGLE_RECAPTCHA_SECRET_KEY</span><span class="o">=</span> <span class="mi">6</span><span class="n">LexSoNNCCCCCEt_8VpyiaubPwb48LLq21wmp4Mr</span>
+<span class="n">EMAIL_HOST</span><span class="o">=</span><span class="n">smtp</span><span class="o">.</span><span class="n">gmail</span><span class="o">.</span><span class="n">com</span>
+<span class="n">EMAIL_HOST_USER</span><span class="o">=</span><span class="n">admin</span><span class="nd">@djangomeetup</span><span class="o">.</span><span class="n">com</span>
+<span class="n">EMAIL_HOST_PASSWORD</span><span class="o">=</span><span class="n">safeandsecure</span>
+</pre></div>
+</div>
+<p>Change SECRET_KEY and GOOGLE_RECAPTCHA_SECRET_KEY to your own keys</p>
+</div>
+<div class="section" id="run-server">
+<h3>Run Server<a class="headerlink" href="#run-server" title="Permalink to this headline">¶</a></h3>
+<p>Start the server: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">manage.py</span> <span class="pre">runserver</span></code></p>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="on-windows">
+<h2>On Windows<a class="headerlink" href="#on-windows" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>Download Project<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Create your project directory: <code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">DjangoMeetup</span></code></p>
+<p>Change to project directory: <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">DjangoMeetup</span></code></p>
+<p>Fork the project from: <code class="docutils literal notranslate"><span class="pre">https://github.com/DjangoMeetup/public-website</span></code></p>
+<p>Clone the project: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/&lt;yourrepo&gt;/public-website.git</span></code></p>
+</div>
+<div class="section" id="id2">
+<h3>Virtual Environment<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>Create a virtual environment: <code class="docutils literal notranslate"><span class="pre">py</span> <span class="pre">-m</span> <span class="pre">venv</span> <span class="pre">env</span></code></p>
+<p>Activate your environment: <code class="docutils literal notranslate"><span class="pre">env\scripts\activate</span></code></p>
+</div>
+<div class="section" id="id3">
+<h3>Load Packages<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>Install packages: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">requirements\dev.txt</span></code></p>
+</div>
+<div class="section" id="id4">
+<h3>Migrate Database<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>Run migrations: <code class="docutils literal notranslate"><span class="pre">py</span> <span class="pre">manage.py</span> <span class="pre">makemigrations</span></code></p>
+<p>Run migrate: <code class="docutils literal notranslate"><span class="pre">py</span> <span class="pre">manage.py</span> <span class="pre">migrate</span></code></p>
+</div>
+<div class="section" id="id5">
+<h3>Environment Variables<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>Create the environent file <strong>.env</strong> and add:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DEBUG</span><span class="o">=</span><span class="kc">True</span>
+<span class="n">DOMAIN</span><span class="o">=</span><span class="n">localhost</span>
+<span class="n">SECRET_KEY</span><span class="o">=-</span><span class="c1">#^op)l91*7@$4qthsxjjs7dl1*-@1$l11^je_@@&amp;3h9&amp;ipe#w</span>
+<span class="n">GOOGLE_RECAPTCHA_SECRET_KEY</span><span class="o">=</span> <span class="mi">6</span><span class="n">LexSoNNCCCCCEt_8VpyiaubPwb48LLq21wmp4Mr</span>
+<span class="n">EMAIL_HOST</span><span class="o">=</span><span class="n">smtp</span><span class="o">.</span><span class="n">gmail</span><span class="o">.</span><span class="n">com</span>
+<span class="n">EMAIL_HOST_USER</span><span class="o">=</span><span class="n">admin</span><span class="nd">@djangomeetup</span><span class="o">.</span><span class="n">com</span>
+<span class="n">EMAIL_HOST_PASSWORD</span><span class="o">=</span><span class="n">safeandsecure</span>
+</pre></div>
+</div>
+<p>Change SECRET_KEY and GOOGLE_RECAPTCHA_SECRET_KEY to your own keys</p>
+</div>
+<div class="section" id="id6">
+<h3>Run Server<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>Start the server: <code class="docutils literal notranslate"><span class="pre">py</span> <span class="pre">manage.py</span> <span class="pre">runserver</span></code></p>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Django Meetup</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quick Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#on-linux-mac">On Linux/Mac:</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#download-project">Download Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#virtual-environment">Virtual Environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#load-packages">Load Packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#migrate-database">Migrate Database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#environment-variables">Environment Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#run-server">Run Server</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#on-windows">On Windows</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Download Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Virtual Environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Load Packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Migrate Database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Environment Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Run Server</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="02_download-project.html">Download Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_virtualenv.html">Virtual Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_packages.html">Load Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_migrate-database.html">Migrate Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_environment-variables.html">Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_runserver.html">Run The Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="80_python.html">Appendix 1: Python Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="81_debugging-tricks.html">Appendix 2: Debugging Tricks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="99_rst-guide.html">H2 - RST Guide</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="../index.html" title="previous chapter">Django Meetup - Overview</a></li>
+      <li>Next: <a href="02_download-project.html" title="next chapter">Download Project</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, DjangoMeetup.com.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/guide/01_quickstart.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

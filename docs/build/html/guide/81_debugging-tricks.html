@@ -1,0 +1,141 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Appendix 2: Debugging Tricks &#8212; Django Meetup 0.0.1 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="H2 - RST Guide" href="99_rst-guide.html" />
+    <link rel="prev" title="Appendix 1: Python Installation" href="80_python.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="appendix-2-debugging-tricks">
+<h1>Appendix 2: Debugging Tricks<a class="headerlink" href="#appendix-2-debugging-tricks" title="Permalink to this headline">¶</a></h1>
+<p>There are several approaches you can use to help you in debugging.  Here are some of the more standard tricks.</p>
+<div class="section" id="use-the-debug-toolbar">
+<h2>Use The Debug Toolbar<a class="headerlink" href="#use-the-debug-toolbar" title="Permalink to this headline">¶</a></h2>
+<p>The Django Meetup model comes with the django debug toolbar in dev mode.  So use that.</p>
+</div>
+<div class="section" id="evaluate-variables-in-settings-file">
+<h2>Evaluate Variables In Settings File<a class="headerlink" href="#evaluate-variables-in-settings-file" title="Permalink to this headline">¶</a></h2>
+<p>If for some reason the settings file doesn’t seem to be picking up the variables, you can use this approach to help determine what’s going on.</p>
+<p>Simply introduce a print() statement into the settings file, with the name of the environment variable you want to inspect.</p>
+<p>Of course, you’ll have to introduce it after the environment variable has been called.</p>
+<p>For example, in the settings file, a print statement could appear as following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GOOGLE_RECAPTCHA_SECRET_KEY</span> <span class="o">=</span> <span class="n">config</span><span class="p">(</span><span class="s1">&#39;GOOGLE_RECAPTCHA_SECRET_KEY&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;RECAPTCHA KEY: &#39;</span><span class="p">,</span> <span class="n">GOOGLE_RECAPTCHA_SECRET_KEY</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then when you execute the runserver command, you will see this variable printed out among the debugging feedback.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Django Meetup</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="01_quickstart.html">Quick Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_download-project.html">Download Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_virtualenv.html">Virtual Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_packages.html">Load Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_migrate-database.html">Migrate Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_environment-variables.html">Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_runserver.html">Run The Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="80_python.html">Appendix 1: Python Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Appendix 2: Debugging Tricks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#use-the-debug-toolbar">Use The Debug Toolbar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#evaluate-variables-in-settings-file">Evaluate Variables In Settings File</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="99_rst-guide.html">H2 - RST Guide</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="80_python.html" title="previous chapter">Appendix 1: Python Installation</a></li>
+      <li>Next: <a href="99_rst-guide.html" title="next chapter">H2 - RST Guide</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, DjangoMeetup.com.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/guide/81_debugging-tricks.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

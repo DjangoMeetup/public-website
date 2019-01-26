@@ -1,0 +1,250 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Download Project &#8212; Django Meetup 0.0.1 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Virtual Environment" href="03_virtualenv.html" />
+    <link rel="prev" title="Quick Installation" href="01_quickstart.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="download-project">
+<h1>Download Project<a class="headerlink" href="#download-project" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="create-a-project-folder">
+<h2>Create A Project Folder<a class="headerlink" href="#create-a-project-folder" title="Permalink to this headline">¶</a></h2>
+<p>Create a DjangoMeetup folder, preferably near the top level user folder on your computer.  Here’s a couple of ideas:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">On</span> <span class="n">Linux</span><span class="o">/</span><span class="n">Mac</span><span class="p">:</span>
+<span class="o">~/</span><span class="n">projects</span><span class="o">/</span><span class="n">djangomeetup</span>
+
+<span class="n">On</span> <span class="n">Windows</span><span class="p">:</span>
+<span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">Owner</span>\<span class="n">Projects</span>\<span class="n">DjangoMeetup</span>
+</pre></div>
+</div>
+<p>As a heads up to where we’re going, in this folder we are going to have:</p>
+<ol class="lowerroman simple">
+<li>the project files downloaded from the Git repository (called public-website)</li>
+<li>a virtual environment, to allow future environment replication (called env)</li>
+</ol>
+</div>
+<div class="section" id="get-a-copy-of-the-project">
+<h2>Get a Copy of The Project<a class="headerlink" href="#get-a-copy-of-the-project" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="fork-the-project">
+<h3>Fork the Project<a class="headerlink" href="#fork-the-project" title="Permalink to this headline">¶</a></h3>
+<p>Go to your browser and log in to your own GitHub account.  Then head to the <a class="reference external" href="https://github.com/DjangoMeetup/public-website">DjangoMeetup repo</a> and fork it.</p>
+<img alt="fork for Django Meetup github repo" class="align-center" src="../_images/project_fork.png" />
+<p>After you’ve done that, head back to your own GitHub account where you’ll see that it’s been forked underneath the project name public-website.</p>
+<p>We now need to clone that repo to the project folder on our computer.   We can do this either using HTTPS (simple), or using SSH way (slightly more involved).  Note, you only have to choose one of these approaches.</p>
+</div>
+<div class="section" id="clone-to-your-computer-https">
+<h3>Clone to Your Computer – HTTPS<a class="headerlink" href="#clone-to-your-computer-https" title="Permalink to this headline">¶</a></h3>
+<p>If you chose the HTTPS method, then you need to clone the repo address using HTTPS, which you can get from your repo, as per image below (note that your github name will appear instead of DjangoMeetup).</p>
+<img alt="fork for Django Meetup github repo" class="align-center" src="../_images/https_clone.png" />
+<p>Then use your command line tool to run the clone command (replace <strong>USERNAME</strong> with your github name):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/**</span><span class="n">USERNAME</span><span class="o">**/</span><span class="n">public</span><span class="o">-</span><span class="n">website</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+<p>If successful, this should have created a public-website folder within your DjangoMeetup folder.</p>
+</div>
+<div class="section" id="clone-to-your-computer-ssh">
+<h3>Clone to Your Computer – SSH<a class="headerlink" href="#clone-to-your-computer-ssh" title="Permalink to this headline">¶</a></h3>
+<p>If you chose the HTTPS way above, you can exclude this step.  Otherwise, if you prefer to use the security of SSH, then use this approach.</p>
+<p>Note that it essentially replicates the HTTPS way, except that we need to add an SSH key.</p>
+<img alt="fork for Django Meetup github repo" class="align-center" src="../_images/ssh_clone.png" />
+<p>Also, the remote links are different between HTTPS and SSH, as shown here (replace <strong>USERNAME</strong> with your github name):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HTTPS</span><span class="p">:</span>
+<span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">USERNAME</span><span class="o">/</span><span class="n">REPOSITORY</span><span class="o">.</span><span class="n">git</span>
+
+<span class="n">SSH</span><span class="p">:</span>
+<span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">USERNAME</span><span class="o">/</span><span class="n">REPOSITORY</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+<div class="section" id="steps-to-create-ssh-key">
+<h4>Steps to Create SSH Key<a class="headerlink" href="#steps-to-create-ssh-key" title="Permalink to this headline">¶</a></h4>
+<p>The SSH key allows you to connect to GitHub without supplying your username or password at each visit.  These keys are kept in your ~/.ssh folder (or the .ssh folder in your home directory on Windows).</p>
+<p>If you don’t already have SSH keys in your.ssh folder, GitHub provides an overview of creating SSH keys here: <a class="reference external" href="https://help.github.com/articles/connecting-to-github-with-ssh/">https://help.github.com/articles/connecting-to-github-with-ssh/</a></p>
+<p>As a general guide, here are the required steps.</p>
+<ol class="lowerroman simple">
+<li>Generate the key pair (with a secure pass phrase).</li>
+</ol>
+<blockquote>
+<div><p>If you use the RSA protocol, these typically default to two files called:</p>
+<ol class="loweralpha simple">
+<li>id_rsa          (the private key, with a secure password)</li>
+<li>id_rsa.pub              (the public key)</li>
+</ol>
+</div></blockquote>
+<ol class="lowerroman simple" start="2">
+<li>Start the ssh-agent on your PC, and add the private key to your .ssh folder</li>
+<li>Add the public key to your GitHub account</li>
+</ol>
+<blockquote>
+<div>You do this by clicking on your profile pic, choosing SSH and GPS keys, New SSH, and then pasting in the contents of the public key file.</div></blockquote>
+</div>
+<div class="section" id="clone-via-ssh">
+<h4>Clone via SSH<a class="headerlink" href="#clone-via-ssh" title="Permalink to this headline">¶</a></h4>
+<p>First we need to clone the repo address using SSH, which you can get from the repo, as per image below (note that your github name will appear instead of DjangoMeetup).</p>
+<p>Then use your command line tool to run the full clone command (replace <strong>USERNAME</strong> with your github name):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">USERNAME</span><span class="o">/</span><span class="n">public</span><span class="o">-</span><span class="n">website</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="if-clone-was-successful">
+<h3>If Clone was Successful<a class="headerlink" href="#if-clone-was-successful" title="Permalink to this headline">¶</a></h3>
+<p>Within the public-website folder, you now should see a structure similar to the folder in the image (this is taken from Windows, but should be the same structure on Linux/Mac).</p>
+<img alt="fork for Django Meetup github repo" class="align-center" src="../_images/public_website_contents.png" />
+<p>Note that on Windows I have enabled View, Hidden Items. This allows me to see the files with a dot prefix.</p>
+</div>
+<div class="section" id="add-parent-repo-address-to-git">
+<h3>Add Parent Repo Address To Git<a class="headerlink" href="#add-parent-repo-address-to-git" title="Permalink to this headline">¶</a></h3>
+<p>Ok, now lets account for modifications made to the project parent, which we will want to bring to our local copy.  In order to do that, we need to add the parent repository (albeit read-only).</p>
+<p>Note that we’ll want to use the DjangoMeetup repo this time.  So run the following command to add the parent (or upstream) remote location:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">With</span> <span class="n">HTTPS</span><span class="p">:</span>
+<span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">upstream</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">DjangoMeetup</span><span class="o">/</span><span class="n">public</span><span class="o">-</span><span class="n">website</span><span class="o">.</span><span class="n">git</span>
+
+<span class="n">With</span> <span class="n">SSH</span><span class="p">:</span>
+<span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">upstream</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">DjangoMeetup</span><span class="o">/</span><span class="n">public</span><span class="o">-</span><span class="n">website</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+<p>This means we now have two git remotes for our local repository.  We can check that by running:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">remote</span>
+</pre></div>
+</div>
+<p>And if you want to see the remotes and the addresses they point to, run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">remote</span> <span class="o">-</span><span class="n">v</span>
+</pre></div>
+</div>
+<p>This should return the remote shortcut names of origin and parent (and addresses if you used the latter command).</p>
+</div>
+<div class="section" id="update-from-parent">
+<h3>Update from Parent<a class="headerlink" href="#update-from-parent" title="Permalink to this headline">¶</a></h3>
+<p>If at a later stage the upstream repository is changed and we want to bring those changes into our local repository, we can then update our local repo by running:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">pull</span> <span class="n">upstream</span> <span class="n">master</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Django Meetup</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="01_quickstart.html">Quick Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Download Project</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#create-a-project-folder">Create A Project Folder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#get-a-copy-of-the-project">Get a Copy of The Project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#fork-the-project">Fork the Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clone-to-your-computer-https">Clone to Your Computer – HTTPS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clone-to-your-computer-ssh">Clone to Your Computer – SSH</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#steps-to-create-ssh-key">Steps to Create SSH Key</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#clone-via-ssh">Clone via SSH</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#if-clone-was-successful">If Clone was Successful</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#add-parent-repo-address-to-git">Add Parent Repo Address To Git</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#update-from-parent">Update from Parent</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="03_virtualenv.html">Virtual Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_packages.html">Load Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_migrate-database.html">Migrate Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_environment-variables.html">Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_runserver.html">Run The Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="80_python.html">Appendix 1: Python Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="81_debugging-tricks.html">Appendix 2: Debugging Tricks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="99_rst-guide.html">H2 - RST Guide</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="01_quickstart.html" title="previous chapter">Quick Installation</a></li>
+      <li>Next: <a href="03_virtualenv.html" title="next chapter">Virtual Environment</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, DjangoMeetup.com.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/guide/02_download-project.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
