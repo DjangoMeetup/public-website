@@ -40,7 +40,7 @@
 <h1>Quick Installation<a class="headerlink" href="#quick-installation" title="Permalink to this headline">¶</a></h1>
 <p>For those already comfortable with the process, this section provides a skeleton of the steps involved.</p>
 <p>Note, you would of course need to insert the name of your git repository when you see <strong>&lt;yourrepo&gt;</strong>. Also, these steps use github’s HTTPS cloning method (as opposed to SSH).</p>
-<p>If you prefer, you can follow the full instructions in the subsequent sections.</p>
+<p>If you prefer more detail, you can follow the full instructions in the subsequent sections.</p>
 <hr class="docutils" />
 <div class="section" id="on-linux-mac">
 <h2>On Linux/Mac:<a class="headerlink" href="#on-linux-mac" title="Permalink to this headline">¶</a></h2>
@@ -50,10 +50,11 @@
 <p>Change to project directory: <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">DjangoMeetup</span></code></p>
 <p>Fork the project from: <code class="docutils literal notranslate"><span class="pre">https://github.com/DjangoMeetup/public-website</span></code></p>
 <p>Clone the project: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/&lt;yourrepo&gt;/public-website.git</span></code></p>
+<p>Add parent repo: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">add</span> <span class="pre">upstream</span> <span class="pre">https://github.com/DjangoMeetup/public-website.git</span></code></p>
 </div>
 <div class="section" id="virtual-environment">
 <h3>Virtual Environment<a class="headerlink" href="#virtual-environment" title="Permalink to this headline">¶</a></h3>
-<p>Create a virtual environment: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">venv</span> <span class="pre">env</span></code></p>
+<p>In the same directory, create a virtual environment: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">venv</span> <span class="pre">env</span></code></p>
 <p>Activate your environment: <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">env/bin/activate</span></code></p>
 </div>
 <div class="section" id="load-packages">
@@ -87,16 +88,29 @@
 <hr class="docutils" />
 <div class="section" id="on-windows">
 <h2>On Windows<a class="headerlink" href="#on-windows" title="Permalink to this headline">¶</a></h2>
+<p>Windows commands are largely the same as for Linux and Macs.
+In fact, the differences become nearly negligible if you download and use the excellent command line tool <a class="reference external" href="https://gitforwindows.org/">Git Bash</a>
+If you do use Git Bash, you’ll have to include the source command when you activate the virtual environment, ie. <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">env/Sripts/activate</span></code>.</p>
+<p>However, if using the Windows command line tool, then users should bear these in mind:</p>
+<ol class="arabic simple">
+<li>you only need type <code class="docutils literal notranslate"><span class="pre">py</span></code> instead of the full <code class="docutils literal notranslate"><span class="pre">python</span></code>.</li>
+<li>you must use back slashes for command line file paths.</li>
+<li>virtual environment activate folder is kept in a Scripts folder (vs bin for LinuxMac)</li>
+<li>virtual environment activation does not require the source command, ie. it will suffice to use <code class="docutils literal notranslate"><span class="pre">env/Sripts/activate</span></code></li>
+<li>file paths are not case sensitive.</li>
+</ol>
+<p>Here are the steps restated for Windows users:</p>
 <div class="section" id="id1">
 <h3>Download Project<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>Create your project directory: <code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">DjangoMeetup</span></code></p>
 <p>Change to project directory: <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">DjangoMeetup</span></code></p>
 <p>Fork the project from: <code class="docutils literal notranslate"><span class="pre">https://github.com/DjangoMeetup/public-website</span></code></p>
 <p>Clone the project: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/&lt;yourrepo&gt;/public-website.git</span></code></p>
+<p>Add parent repo: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">add</span> <span class="pre">upstream</span> <span class="pre">https://github.com/DjangoMeetup/public-website.git</span></code></p>
 </div>
 <div class="section" id="id2">
 <h3>Virtual Environment<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
-<p>Create a virtual environment: <code class="docutils literal notranslate"><span class="pre">py</span> <span class="pre">-m</span> <span class="pre">venv</span> <span class="pre">env</span></code></p>
+<p>In the same directory, create a virtual environment: <code class="docutils literal notranslate"><span class="pre">py</span> <span class="pre">-m</span> <span class="pre">venv</span> <span class="pre">env</span></code></p>
 <p>Activate your environment: <code class="docutils literal notranslate"><span class="pre">env\scripts\activate</span></code></p>
 </div>
 <div class="section" id="id3">
@@ -176,7 +190,8 @@
 <li class="toctree-l1"><a class="reference internal" href="07_runserver.html">Run The Server</a></li>
 <li class="toctree-l1"><a class="reference internal" href="80_python.html">Appendix 1: Python Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="81_debugging-tricks.html">Appendix 2: Debugging Tricks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="99_rst-guide.html">H2 - RST Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="82_sphinx.html">Appendix 4: Sphinx Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="99_rst-guide.html">Appendix 3: reStructuredText Help</a></li>
 </ul>
 
 <div class="relations">

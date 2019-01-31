@@ -19,7 +19,18 @@ Dependency Management
 
 The repo includes requirements files in the requirements folders, namely the **base.txt**, **dev.txt** and **prod.txt**.  If you inspect each file you’ll see the the packages and their version numbers required.  Note that the dev and prod file already include a link to the base file.
 
-We’re only concerned with development at this stage.  So change into the requirements folder and install the required dev & base packages via the following command:
+We’re only concerned with development at this stage.  So install the required dev & base packages via the following command:
+
+::
+
+	On Linux & Mac:
+    pip install requirements/dev.txt
+
+	On Windows:
+    pip install requirements\dev.txt
+
+Note we referred to the nested folder where the requirements are contained.  
+You could have changed directories into the requirements folder and achieved the same result via the following command:
 
 ::
 

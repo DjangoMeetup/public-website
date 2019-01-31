@@ -41,6 +41,7 @@
 <p>Note that the information provided in <a class="reference external" href="https://docs.djangoproject.com/en/">the official Django documentation</a> is far more comprehensive.  However, this provides some additional practical understanding of what is going on when setting up this project.</p>
 <p>The understanding is important because due to various permuations, such as different operating systems or different version numbers, you may encounter some errors and issues along the way (it happens often!).  Understanding the why to what you’re trying to do can help solve the problem, sometimes.</p>
 <p>At worst, if you encounter a problem you’re unable to solve, you can simply delete all the folders created below, or one of either the environment or public website folders, and then start again.</p>
+<p>While a large component of Django users use Linux/Mac, many new users come to Django via Windows.  This guide tries to document instructions for all those OS variants.</p>
 <div class="section" id="contents">
 <h2>Contents:<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
@@ -95,7 +96,7 @@
 <li class="toctree-l1"><a class="reference internal" href="guide/05_migrate-database.html">Migrate Database</a></li>
 <li class="toctree-l1"><a class="reference internal" href="guide/06_environment-variables.html">Environment Variables</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="guide/06_environment-variables.html#secret-key">Secret Key</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guide/06_environment-variables.html#google-recaptcha-secret-key">Google_Recaptcha_Secret_Key</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/06_environment-variables.html#google-recaptcha-secret-key">Google Recaptcha Secret Key</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="guide/07_runserver.html">Run The Server</a></li>
@@ -108,20 +109,29 @@
 <li class="toctree-l2"><a class="reference internal" href="guide/81_debugging-tricks.html#evaluate-variables-in-settings-file">Evaluate Variables In Settings File</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="guide/99_rst-guide.html">H2 - RST Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="guide/99_rst-guide.html#h3-title-fully-contained">H3 - Title Fully Contained</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="guide/99_rst-guide.html#h4-subtitle">H4 - Subtitle</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="guide/99_rst-guide.html#h5-subsubtitle">H5 - Subsubtitle</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="guide/99_rst-guide.html#h6-section">H6 - Section</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="guide/99_rst-guide.html#subsection">Subsection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide/82_sphinx.html">Appendix 4: Sphinx Help</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="guide/82_sphinx.html#using-sphinx">Using Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/82_sphinx.html#pdf-creation">PDF Creation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="guide/82_sphinx.html#install-mitex">Install Mitex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="guide/82_sphinx.html#create-the-pdf">Create the PDF</a></li>
 </ul>
 </li>
 </ul>
 </li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="guide/99_rst-guide.html">Appendix 3: reStructuredText Help</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="guide/99_rst-guide.html#headers">Headers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/99_rst-guide.html#paragraphs">Paragraphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/99_rst-guide.html#indentation">Indentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/99_rst-guide.html#inline-markup">Inline markup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/99_rst-guide.html#separators">Separators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/99_rst-guide.html#literal-blocks">Literal Blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/99_rst-guide.html#inline-code">Inline Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/99_rst-guide.html#code-blocks">Code-Blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/99_rst-guide.html#links">Links</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/99_rst-guide.html#bullet-lists">Bullet Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/99_rst-guide.html#enumerated-lists">Enumerated Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/99_rst-guide.html#images">Images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/99_rst-guide.html#directives">Directives</a></li>
 </ul>
 </li>
 </ul>
@@ -156,7 +166,8 @@
 <li class="toctree-l1"><a class="reference internal" href="guide/07_runserver.html">Run The Server</a></li>
 <li class="toctree-l1"><a class="reference internal" href="guide/80_python.html">Appendix 1: Python Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="guide/81_debugging-tricks.html">Appendix 2: Debugging Tricks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="guide/99_rst-guide.html">H2 - RST Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide/82_sphinx.html">Appendix 4: Sphinx Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide/99_rst-guide.html">Appendix 3: reStructuredText Help</a></li>
 </ul>
 
 <div class="relations">

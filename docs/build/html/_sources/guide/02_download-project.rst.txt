@@ -17,9 +17,10 @@ Create a DjangoMeetup folder, preferably near the top level user folder on your 
 
 As a heads up to where we’re going, in this folder we are going to have:
 
-(i)	the project files downloaded from the Git repository (called public-website)
+(i)	the project files downloaded from the Git repository (called **public-website**).
+    This folder will be referred to as the project repository folder, because it contains the .git folder.
 
-(ii)	a virtual environment, to allow future environment replication (called env)
+(ii) a virtual environment, to allow future environment replication (in this guide it will be called **env**)
 
 Get a Copy of The Project
 ##################################################
@@ -120,6 +121,21 @@ Within the public-website folder, you now should see a structure similar to the 
     :alt: fork for Django Meetup github repo
 
 Note that on Windows I have enabled View, Hidden Items. This allows me to see the files with a dot prefix.
+
+By way of clarifying terminology, what we see are the contents of the project repository root folder (ie the top **public-website** folder). 
+This contains the project root folder (ie. the bottom **public-website** folder).
+
+Within that folder are the:
+
+* project root folder, which as mentioned above is the bottom **public-website** folder
+* docs folder, which contains the source code for this guide
+* manage.py file, for running django commands
+* requirements folder, which contains package requirements
+* .git repository
+* .gitignore file, which specifies which files to keep out of git
+* README.md file for the project
+* utility_hard_reset.py tool for resetting the database
+
 
 Add Parent Repo Address To Git
 --------------------------------------------------

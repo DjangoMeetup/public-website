@@ -21,6 +21,7 @@ The understanding is important because due to various permuations, such as diffe
 
 At worst, if you encounter a problem you’re unable to solve, you can simply delete all the folders created below, or one of either the environment or public website folders, and then start again.
 
+While a large component of Django users use Linux/Mac, many new users come to Django via Windows.  This guide tries to document instructions for all those OS variants.
 
 Contents:
 ----------
@@ -37,6 +38,7 @@ Contents:
    guide/07_runserver
    guide/80_python
    guide/81_debugging-tricks
+   guide/82_sphinx
    guide/99_rst-guide
 
 

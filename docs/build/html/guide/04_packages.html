@@ -46,7 +46,16 @@
 <div class="section" id="dependency-management">
 <h2>Dependency Management<a class="headerlink" href="#dependency-management" title="Permalink to this headline">¶</a></h2>
 <p>The repo includes requirements files in the requirements folders, namely the <strong>base.txt</strong>, <strong>dev.txt</strong> and <strong>prod.txt</strong>.  If you inspect each file you’ll see the the packages and their version numbers required.  Note that the dev and prod file already include a link to the base file.</p>
-<p>We’re only concerned with development at this stage.  So change into the requirements folder and install the required dev &amp; base packages via the following command:</p>
+<p>We’re only concerned with development at this stage.  So install the required dev &amp; base packages via the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">On</span> <span class="n">Linux</span> <span class="o">&amp;</span> <span class="n">Mac</span><span class="p">:</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">requirements</span><span class="o">/</span><span class="n">dev</span><span class="o">.</span><span class="n">txt</span>
+
+    <span class="n">On</span> <span class="n">Windows</span><span class="p">:</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">requirements</span>\<span class="n">dev</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>Note we referred to the nested folder where the requirements are contained.
+You could have changed directories into the requirements folder and achieved the same result via the following command:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">dev</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
@@ -83,7 +92,8 @@
 <li class="toctree-l1"><a class="reference internal" href="07_runserver.html">Run The Server</a></li>
 <li class="toctree-l1"><a class="reference internal" href="80_python.html">Appendix 1: Python Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="81_debugging-tricks.html">Appendix 2: Debugging Tricks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="99_rst-guide.html">H2 - RST Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="82_sphinx.html">Appendix 4: Sphinx Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="99_rst-guide.html">Appendix 3: reStructuredText Help</a></li>
 </ul>
 
 <div class="relations">

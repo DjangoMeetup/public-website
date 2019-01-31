@@ -5,13 +5,21 @@ Virtual Environment
 Create the Virtual Environment
 ##################################################
 
-Each time we start a new project, we want the virtual environment to be associated with that project and neatly isolated from any other projects we're working on. So let’s create a new virtual environment inside the DjangoMeetup folder.
+Each time we start a new project, we want a specific environment to be associated with that project. That way, the project's dependencies can easily be modified, and we can quickly switch to other projects that have different dependencies.  This includes the python version, as well as the various django and 3rd party packages.
+
+You can store the virtual environment wherever you like.  But it should be easily identifiable, and neatly isolated from all other projects.
+
+For example, you could have a folder solely dedicated for virtual environments, and another folder dedicated for your projects.
+
+For simplicity, what we'll do is store the virtual environment within the project itself. That way, the environment + all project files will be kept in the same folder.
+
+So let’s create a new virtual environment inside the DjangoMeetup folder, at the same level as the repository folder (ie. the same level as the top **public-website** folder).
 
 Versions of Python before 3.3 used pip or pyvenv + third party tools to create virtual environments.  However, Python 3.3 and versions since have an in-built venv module, which is recommended.  So we’ll assume you’re using venv.
 
-You can use any name you choose for the virtual environment, but typical names include the likes of venv , env, or env_projectname.  Here we’ll just use env to help distinguish from the venv command.
+You can use any name you choose for the virtual environment, but typical names include the likes of venv , env, or venv_projectname.  Here we’ll just use **env** to help distinguish from the venv command.
 
-Make sure your command line is in the DjangoMeetup folder, then run the following command to create the virtual environment env:
+Make sure your command line is in the correct folder, then run the following command to create the virtual environment env:
 
 ::
 
@@ -21,7 +29,14 @@ Make sure your command line is in the DjangoMeetup folder, then run the followin
     On Windows:
     py -m venv env
 
-Because the virtual environment folder env is above the public-website folder, its kept out of the git source control. That’s good because the environment only works on your machine and would be just bloat in the source control.
+Because the virtual environment folder **env** is above the git repository in the public-website folder, its kept out of the git source control.
+That's because the environment is for your own setup, and including it in source control would just be bloat.
+
+Within the DjangoMeetup folder, we should now just have the two folders:
+
+1. the env folder
+2. the public-website folder (ie. the git repository folder)
+
 
 Activate & Deactivate Virtual Environment
 ##################################################

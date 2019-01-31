@@ -48,7 +48,10 @@
 <span class="n">EMAIL_HOST_PASSWORD</span><span class="o">=</span><span class="n">safeandsecure</span>
 </pre></div>
 </div>
-<p>This would allow the web site to get up and running.  However, its best to use your own.  In particular, its best to to use your own <strong>SECRET_KEY</strong>. And in the case of the <strong>GOOGLE_RECAPTCHA_SECRET_KEY</strong>, you’ll have to get your own otherwise your captcha won’t work.</p>
+<p>This would allow the basic front page of the web site to get up and running.
+However, you’ll still need to tailor these variables for your own usage.
+In particular, you’ll want to use your own <strong>SECRET_KEY</strong>.
+And in the case of the <strong>GOOGLE_RECAPTCHA_SECRET_KEY</strong>, you’ll have to get one from Google otherwise your captcha won’t work.</p>
 <p>So lets modify these variables to provide your own. Here’s a rundown on how to do that.</p>
 <div class="section" id="secret-key">
 <h2>Secret Key<a class="headerlink" href="#secret-key" title="Permalink to this headline">¶</a></h2>
@@ -65,7 +68,7 @@ For development purposes, generate your own secret key.  You can create one eith
 <p>Alternatively you can generate a django secret key from other places, such as this website:  <a class="reference external" href="https://www.miniwebtool.com/django-secret-key-generator/">https://www.miniwebtool.com/django-secret-key-generator/</a></p>
 </div>
 <div class="section" id="google-recaptcha-secret-key">
-<h2>Google_Recaptcha_Secret_Key<a class="headerlink" href="#google-recaptcha-secret-key" title="Permalink to this headline">¶</a></h2>
+<h2>Google Recaptcha Secret Key<a class="headerlink" href="#google-recaptcha-secret-key" title="Permalink to this headline">¶</a></h2>
 <p>The Django Meetup website uses Google’s reCAPTCHA v2 version.  You will need to sign up for an API key pair for the site, and register your localhost.</p>
 <p>Head over to <a class="reference external" href="https://www.google.com/recaptcha/admin#list">https://www.google.com/recaptcha/admin#list</a> and register your localhost address after choosing a reCAPTCHA version 2 tickbox type.</p>
 <p>For the label, use localhost, and for the domain, use 127.0.0.1.  Then add an email address of your choice.</p>
@@ -107,13 +110,14 @@ CAN WE ADD A settings.RECAPTCHA_SITE_KEY AS A VIEWS CONTEXT VARIABLE?</p>
 <li class="toctree-l1"><a class="reference internal" href="05_migrate-database.html">Migrate Database</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Environment Variables</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#secret-key">Secret Key</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#google-recaptcha-secret-key">Google_Recaptcha_Secret_Key</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#google-recaptcha-secret-key">Google Recaptcha Secret Key</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="07_runserver.html">Run The Server</a></li>
 <li class="toctree-l1"><a class="reference internal" href="80_python.html">Appendix 1: Python Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="81_debugging-tricks.html">Appendix 2: Debugging Tricks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="99_rst-guide.html">H2 - RST Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="82_sphinx.html">Appendix 4: Sphinx Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="99_rst-guide.html">Appendix 3: reStructuredText Help</a></li>
 </ul>
 
 <div class="relations">

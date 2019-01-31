@@ -10,7 +10,7 @@ For those already comfortable with the process, this section provides a skeleton
 
 Note, you would of course need to insert the name of your git repository when you see **<yourrepo>**. Also, these steps use github's HTTPS cloning method (as opposed to SSH).
 
-If you prefer, you can follow the full instructions in the subsequent sections.
+If you prefer more detail, you can follow the full instructions in the subsequent sections.
 
 --------------------------------------------------
 
@@ -28,10 +28,12 @@ Fork the project from: ``https://github.com/DjangoMeetup/public-website``
 
 Clone the project: ``git clone https://github.com/<yourrepo>/public-website.git``
 
+Add parent repo: ``git remote add upstream https://github.com/DjangoMeetup/public-website.git``
+
 Virtual Environment
 ==================================================
 
-Create a virtual environment: ``python -m venv env``
+In the same directory, create a virtual environment: ``python -m venv env``
 
 Activate your environment: ``source env/bin/activate``
 
@@ -73,6 +75,19 @@ Start the server: ``python manage.py runserver``
 On Windows
 ##################################################
 
+Windows commands are largely the same as for Linux and Macs.
+In fact, the differences become nearly negligible if you download and use the excellent command line tool `Git Bash <https://gitforwindows.org/>`_
+If you do use Git Bash, you'll have to include the source command when you activate the virtual environment, ie. ``source env/Sripts/activate``.
+ 
+However, if using the Windows command line tool, then users should bear these in mind:
+
+1. you only need type ``py`` instead of the full ``python``.
+2. you must use back slashes for command line file paths.
+3. virtual environment activate folder is kept in a Scripts folder (vs bin for Linux\Mac)
+4. virtual environment activation does not require the source command, ie. it will suffice to use ``env/Sripts/activate``
+5. file paths are not case sensitive.
+
+Here are the steps restated for Windows users:
 
 Download Project
 ==================================================
@@ -85,10 +100,12 @@ Fork the project from: ``https://github.com/DjangoMeetup/public-website``
 
 Clone the project: ``git clone https://github.com/<yourrepo>/public-website.git``
 
+Add parent repo: ``git remote add upstream https://github.com/DjangoMeetup/public-website.git``
+
 Virtual Environment
 ==================================================
 
-Create a virtual environment: ``py -m venv env``
+In the same directory, create a virtual environment: ``py -m venv env``
 
 Activate your environment: ``env\scripts\activate``
 

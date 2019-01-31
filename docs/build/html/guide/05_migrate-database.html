@@ -36,16 +36,21 @@
             
   <div class="section" id="migrate-database">
 <h1>Migrate Database<a class="headerlink" href="#migrate-database" title="Permalink to this headline">¶</a></h1>
-<p>After cloning the project, we need to create the equivalent tables in our database.  Note that the database is deliberately exclude from the GitHub source control, so that each developer gets to work with a clean set of tables.</p>
-<p>A way to do this is migrate the data structure using the migrate command, which will replicate the models as tables in the database.</p>
-<p>However, a good practice is to first run the makemigrations command.  This creates a trail of python code that replicates the instructions made to the database each time the migrate command is used.  In turn, this can be used later to recreate model changes, or even investigate what took place.</p>
-<p>So, lets make migrations and migrate the models by running the following:</p>
+<p>After cloning the project, we need to create the equivalent tables in our database.  Note that the database is deliberately exclude from the GitHub source control, via an entry of <a href="#id1"><span class="problematic" id="id2">*</span></a>.sqlite3 in the .gitignore file.
+That way, each developer builds the database from scratch and and then works with a clean set of tables for their development purposes.</p>
+<p>First though, a good practice is to first run the makemigrations command before you make changes to the database.
+This doesn’t touch the database, but instead creates a trail of python code that replicates the instructions required to be made.
+In turn, this can be used later to roll back or recreate model changes, and investigate what took place.</p>
+<p>After having run the migrations command, we then run the migrate command.
+This does affect the database, and the first time we run it, it migrates the complete data structure by replicating the models as tables in the database.
+Thereafter the migrate command updates the database with the latest changes.</p>
+<p>So, lets make migrations and migrate the models via the following:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">On</span> <span class="n">Linux</span><span class="o">/</span><span class="n">Mac</span><span class="p">:</span>
 <span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">makemigrations</span>
 <span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">migrate</span>
 
 <span class="n">On</span> <span class="n">Windows</span><span class="p">:</span>
-<span class="n">Py</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">makemigrations</span>
+<span class="n">py</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">makemigrations</span>
 <span class="n">py</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">migrate</span>
 </pre></div>
 </div>
@@ -78,7 +83,8 @@
 <li class="toctree-l1"><a class="reference internal" href="07_runserver.html">Run The Server</a></li>
 <li class="toctree-l1"><a class="reference internal" href="80_python.html">Appendix 1: Python Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="81_debugging-tricks.html">Appendix 2: Debugging Tricks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="99_rst-guide.html">H2 - RST Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="82_sphinx.html">Appendix 4: Sphinx Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="99_rst-guide.html">Appendix 3: reStructuredText Help</a></li>
 </ul>
 
 <div class="relations">

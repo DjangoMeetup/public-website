@@ -48,8 +48,12 @@
 </div>
 <p>As a heads up to where we’re going, in this folder we are going to have:</p>
 <ol class="lowerroman simple">
-<li>the project files downloaded from the Git repository (called public-website)</li>
-<li>a virtual environment, to allow future environment replication (called env)</li>
+<li>the project files downloaded from the Git repository (called <strong>public-website</strong>).</li>
+</ol>
+<blockquote>
+<div>This folder will be referred to as the project repository folder, because it contains the .git folder.</div></blockquote>
+<ol class="lowerroman simple" start="2">
+<li>a virtual environment, to allow future environment replication (in this guide it will be called <strong>env</strong>)</li>
 </ol>
 </div>
 <div class="section" id="get-a-copy-of-the-project">
@@ -120,6 +124,19 @@
 <p>Within the public-website folder, you now should see a structure similar to the folder in the image (this is taken from Windows, but should be the same structure on Linux/Mac).</p>
 <img alt="fork for Django Meetup github repo" class="align-center" src="../_images/public_website_contents.png" />
 <p>Note that on Windows I have enabled View, Hidden Items. This allows me to see the files with a dot prefix.</p>
+<p>By way of clarifying terminology, what we see are the contents of the project repository root folder (ie the top <strong>public-website</strong> folder).
+This contains the project root folder (ie. the bottom <strong>public-website</strong> folder).</p>
+<p>Within that folder are the:</p>
+<ul class="simple">
+<li>project root folder, which as mentioned above is the bottom <strong>public-website</strong> folder</li>
+<li>docs folder, which contains the source code for this guide</li>
+<li>manage.py file, for running django commands</li>
+<li>requirements folder, which contains package requirements</li>
+<li>.git repository</li>
+<li>.gitignore file, which specifies which files to keep out of git</li>
+<li>README.md file for the project</li>
+<li>utility_hard_reset.py tool for resetting the database</li>
+</ul>
 </div>
 <div class="section" id="add-parent-repo-address-to-git">
 <h3>Add Parent Repo Address To Git<a class="headerlink" href="#add-parent-repo-address-to-git" title="Permalink to this headline">¶</a></h3>
@@ -195,7 +212,8 @@
 <li class="toctree-l1"><a class="reference internal" href="07_runserver.html">Run The Server</a></li>
 <li class="toctree-l1"><a class="reference internal" href="80_python.html">Appendix 1: Python Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="81_debugging-tricks.html">Appendix 2: Debugging Tricks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="99_rst-guide.html">H2 - RST Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="82_sphinx.html">Appendix 4: Sphinx Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="99_rst-guide.html">Appendix 3: reStructuredText Help</a></li>
 </ul>
 
 <div class="relations">

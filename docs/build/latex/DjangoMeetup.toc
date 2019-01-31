@@ -1,0 +1,62 @@
+\babel@toc {english}{}
+\contentsline {chapter}{\numberline {1}Contents:}{3}{chapter.1}% 
+\contentsline {section}{\numberline {1.1}Quick Installation}{3}{section.1.1}% 
+\contentsline {subsection}{\numberline {1.1.1}On Linux/Mac:}{3}{subsection.1.1.1}% 
+\contentsline {subsubsection}{\numberline {1.1.1.1}Download Project}{3}{subsubsection.1.1.1.1}% 
+\contentsline {subsubsection}{\numberline {1.1.1.2}Virtual Environment}{3}{subsubsection.1.1.1.2}% 
+\contentsline {subsubsection}{\numberline {1.1.1.3}Load Packages}{3}{subsubsection.1.1.1.3}% 
+\contentsline {subsubsection}{\numberline {1.1.1.4}Migrate Database}{3}{subsubsection.1.1.1.4}% 
+\contentsline {subsubsection}{\numberline {1.1.1.5}Environment Variables}{3}{subsubsection.1.1.1.5}% 
+\contentsline {subsubsection}{\numberline {1.1.1.6}Run Server}{4}{subsubsection.1.1.1.6}% 
+\contentsline {subsection}{\numberline {1.1.2}On Windows}{4}{subsection.1.1.2}% 
+\contentsline {subsubsection}{\numberline {1.1.2.1}Download Project}{4}{subsubsection.1.1.2.1}% 
+\contentsline {subsubsection}{\numberline {1.1.2.2}Virtual Environment}{4}{subsubsection.1.1.2.2}% 
+\contentsline {subsubsection}{\numberline {1.1.2.3}Load Packages}{4}{subsubsection.1.1.2.3}% 
+\contentsline {subsubsection}{\numberline {1.1.2.4}Migrate Database}{5}{subsubsection.1.1.2.4}% 
+\contentsline {subsubsection}{\numberline {1.1.2.5}Environment Variables}{5}{subsubsection.1.1.2.5}% 
+\contentsline {subsubsection}{\numberline {1.1.2.6}Run Server}{5}{subsubsection.1.1.2.6}% 
+\contentsline {section}{\numberline {1.2}Download Project}{5}{section.1.2}% 
+\contentsline {subsection}{\numberline {1.2.1}Create A Project Folder}{5}{subsection.1.2.1}% 
+\contentsline {subsection}{\numberline {1.2.2}Get a Copy of The Project}{5}{subsection.1.2.2}% 
+\contentsline {subsubsection}{\numberline {1.2.2.1}Fork the Project}{5}{subsubsection.1.2.2.1}% 
+\contentsline {subsubsection}{\numberline {1.2.2.2}Clone to Your Computer \textendash {} HTTPS}{6}{subsubsection.1.2.2.2}% 
+\contentsline {subsubsection}{\numberline {1.2.2.3}Clone to Your Computer \textendash {} SSH}{6}{subsubsection.1.2.2.3}% 
+\contentsline {paragraph}{\numberline {1.2.2.3.1}Steps to Create SSH Key}{7}{paragraph.1.2.2.3.1}% 
+\contentsline {paragraph}{\numberline {1.2.2.3.2}Clone via SSH}{7}{paragraph.1.2.2.3.2}% 
+\contentsline {subsubsection}{\numberline {1.2.2.4}If Clone was Successful}{7}{subsubsection.1.2.2.4}% 
+\contentsline {subsubsection}{\numberline {1.2.2.5}Add Parent Repo Address To Git}{8}{subsubsection.1.2.2.5}% 
+\contentsline {subsubsection}{\numberline {1.2.2.6}Update from Parent}{9}{subsubsection.1.2.2.6}% 
+\contentsline {section}{\numberline {1.3}Virtual Environment}{9}{section.1.3}% 
+\contentsline {subsection}{\numberline {1.3.1}Create the Virtual Environment}{9}{subsection.1.3.1}% 
+\contentsline {subsection}{\numberline {1.3.2}Activate \& Deactivate Virtual Environment}{10}{subsection.1.3.2}% 
+\contentsline {section}{\numberline {1.4}Load Packages}{10}{section.1.4}% 
+\contentsline {subsection}{\numberline {1.4.1}Dependency Management}{11}{subsection.1.4.1}% 
+\contentsline {section}{\numberline {1.5}Migrate Database}{11}{section.1.5}% 
+\contentsline {section}{\numberline {1.6}Environment Variables}{11}{section.1.6}% 
+\contentsline {subsection}{\numberline {1.6.1}Secret Key}{12}{subsection.1.6.1}% 
+\contentsline {subsection}{\numberline {1.6.2}Google Recaptcha Secret Key}{12}{subsection.1.6.2}% 
+\contentsline {section}{\numberline {1.7}Run The Server}{13}{section.1.7}% 
+\contentsline {section}{\numberline {1.8}Appendix 1: Python Installation}{13}{section.1.8}% 
+\contentsline {subsection}{\numberline {1.8.1}Flags}{14}{subsection.1.8.1}% 
+\contentsline {section}{\numberline {1.9}Appendix 2: Debugging Tricks}{14}{section.1.9}% 
+\contentsline {subsection}{\numberline {1.9.1}Use The Debug Toolbar}{14}{subsection.1.9.1}% 
+\contentsline {subsection}{\numberline {1.9.2}Evaluate Variables In Settings File}{14}{subsection.1.9.2}% 
+\contentsline {section}{\numberline {1.10}Appendix 4: Sphinx Help}{14}{section.1.10}% 
+\contentsline {subsection}{\numberline {1.10.1}Using Sphinx}{14}{subsection.1.10.1}% 
+\contentsline {subsection}{\numberline {1.10.2}PDF Creation}{14}{subsection.1.10.2}% 
+\contentsline {subsubsection}{\numberline {1.10.2.1}Install Mitex}{14}{subsubsection.1.10.2.1}% 
+\contentsline {subsubsection}{\numberline {1.10.2.2}Create the PDF}{14}{subsubsection.1.10.2.2}% 
+\contentsline {section}{\numberline {1.11}Appendix 3: reStructuredText Help}{15}{section.1.11}% 
+\contentsline {subsection}{\numberline {1.11.1}Headers}{15}{subsection.1.11.1}% 
+\contentsline {subsection}{\numberline {1.11.2}Paragraphs}{16}{subsection.1.11.2}% 
+\contentsline {subsection}{\numberline {1.11.3}Indentation}{16}{subsection.1.11.3}% 
+\contentsline {subsection}{\numberline {1.11.4}Inline markup}{16}{subsection.1.11.4}% 
+\contentsline {subsection}{\numberline {1.11.5}Separators}{16}{subsection.1.11.5}% 
+\contentsline {subsection}{\numberline {1.11.6}Literal Blocks}{17}{subsection.1.11.6}% 
+\contentsline {subsection}{\numberline {1.11.7}Inline Code}{17}{subsection.1.11.7}% 
+\contentsline {subsection}{\numberline {1.11.8}Code-Blocks}{17}{subsection.1.11.8}% 
+\contentsline {subsection}{\numberline {1.11.9}Links}{18}{subsection.1.11.9}% 
+\contentsline {subsection}{\numberline {1.11.10}Bullet Lists}{19}{subsection.1.11.10}% 
+\contentsline {subsection}{\numberline {1.11.11}Enumerated Lists}{19}{subsection.1.11.11}% 
+\contentsline {subsection}{\numberline {1.11.12}Images}{20}{subsection.1.11.12}% 
+\contentsline {subsection}{\numberline {1.11.13}Directives}{20}{subsection.1.11.13}% 

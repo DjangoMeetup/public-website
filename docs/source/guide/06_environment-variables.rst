@@ -18,7 +18,10 @@ In the public-website folder, we create that .env file, and then save the follow
     EMAIL_HOST_USER=admin@djangomeetup.com
     EMAIL_HOST_PASSWORD=safeandsecure
 
-This would allow the web site to get up and running.  However, its best to use your own.  In particular, its best to to use your own **SECRET_KEY**. And in the case of the **GOOGLE_RECAPTCHA_SECRET_KEY**, you’ll have to get your own otherwise your captcha won’t work.
+This would allow the basic front page of the web site to get up and running.  
+However, you'll still need to tailor these variables for your own usage.  
+In particular, you'll want to use your own **SECRET_KEY**. 
+And in the case of the **GOOGLE_RECAPTCHA_SECRET_KEY**, you’ll have to get one from Google otherwise your captcha won’t work.
 
 So lets modify these variables to provide your own. Here’s a rundown on how to do that.
 
@@ -40,7 +43,7 @@ To use the Django Inbuilt function, run the following command:
 
 Alternatively you can generate a django secret key from other places, such as this website:  `<https://www.miniwebtool.com/django-secret-key-generator/>`_
 
-Google_Recaptcha_Secret_Key
+Google Recaptcha Secret Key
 ##################################################
 
 The Django Meetup website uses Google’s reCAPTCHA v2 version.  You will need to sign up for an API key pair for the site, and register your localhost.
