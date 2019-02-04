@@ -62,11 +62,17 @@ class EventCreationView(GlazeMixin, FormView):
 
 	def get_form_kwargs(self, **kwargs):
 		user = self.request.user
-		form_kwargs = super(EventCreationView, self).get_form_kwargs()
-		form_kwargs.update({
-			'user': user 
-			})
-		return form_kwargs
+		if user.is_authenticated:
+			print ('not authenticated')
+			form_kwargs = super(EventCreationView, self).get_form_kwargs()
+			form_kwargs.update({
+				'user': user 
+				})
+
+			return form_kwargs
+		else:
+			form_kwargs = super(EventCreationView, self).get_form_kwargs()
+			return form_kwargs
 
 
 
@@ -120,9 +126,11 @@ class EventsList(TemplateView):
 	def get(self, request):
 		#retrieve's and lists all the events
 		event_list = []
-		for event in Events.objects.all():
+		for event in Events.objects.all().order_by('day'):
 			event_list.append(event)
-		args = {'event_list': event_list}
+		args = {
+			'event_list': event_list,
+			}
 		return render(request, self.template_name, args)
 
 #A more detailed view of the event itself
@@ -151,13 +159,27 @@ class EventSpecifics(TemplateView):
 			position_no_comma = address_str.replace(',', '%2C')
 			position_no_space = position_no_comma.replace(' ', '+')
 			google_url = "https://www.google.com/maps/search/" + position_no_space
-			print (google_url)
-			args = {'event': event, 'google_url': google_url}
+
+			#datetime
+			date = event.day
+			print (type(date))
+			day = date.day
+			month = date.month
+			year = date.year
+
+			args = {
+			'year': year,
+			'month': month,
+			'day': day,
+			'event': event, 
+			'google_url': google_url
+			}
 			# get a list of all the groups the user is in
-			user_groups = [_event for _event in UserEventGroupManager().get_queryset(request).all()]
-			if event.group in user_groups:
-				is_group = True
-				args['is_group'] = is_group
+			if request.user.is_authenticated:
+				user_groups = [_event for _event in UserEventGroupManager().get_queryset(request).all()]
+				if event.group in user_groups:
+					is_group = True
+					args['is_group'] = is_group
 
 		return render(request, self.template_name, args)
 	def post(self, request, slug):
@@ -173,12 +195,27 @@ class EventSpecifics(TemplateView):
 			position_no_comma = address_str.replace(',', '%2C')
 			position_no_space = position_no_comma.replace(' ', '+')
 			google_url = "https://www.google.com/maps/search/" + position_no_space
-			print (google_url)
-			args = {'event': event, 'google_url': google_url}
+			
+			#datetime
+			date = event.day
+			print (type(date))
+			day = date.day
+			month = date.month
+			year = date.year
+
+			args = {
+			'year': year,
+			'month': month,
+			'day': day,
+			'event': event, 
+			'google_url': google_url
+			}
 			# get a list of all the groups the user is in
-			user_groups = [_event for _event in UserEventGroupManager().get_queryset(request).all()]
-			if event.group in user_groups:
-				args['is_group'] = True
+			if request.user.is_authenticated:
+				user_groups = [_event for _event in UserEventGroupManager().get_queryset(request).all()]
+				if event.group in user_groups:
+					is_group = True
+					args['is_group'] = is_gro
 
 		if user.is_authenticated:
 			event.attendees.add(request.user)

@@ -55,7 +55,7 @@ class EventCreationForm(forms.ModelForm):
 
 	class Meta:
 		model = Events
-		fields = ('name', 'details', 'day', 'group')
+		fields = ('name', 'details', 'image', 'day', 'group')
 
 		widgets = {
 		'day': XDSoftDateTimePickerInput(),
@@ -69,4 +69,11 @@ class EventCreationForm(forms.ModelForm):
 		user = kwargs.pop('user', None)
 
 		super(EventCreationForm, self).__init__(*args, **kwargs)
-		self.fields['group'].queryset = EventGroups.objects.filter(main_user_group=user)
+		#if the user is authenticated
+		if user:
+			print ('form: authenticated')
+			self.fields['group'].queryset = EventGroups.objects.filter(main_user_group=user)
+		#otherwise just an empty queryset
+		else:
+			print ('form: not authenticated')
+			self.fields['group'].queryset = EventGroups.objects.none()

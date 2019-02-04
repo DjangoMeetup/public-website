@@ -29,6 +29,8 @@ class EventGroups(models.Model):
 class Events(models.Model):
 	name = models.CharField(max_length=200, blank=True, default='Unnamed Event')
 	day = models.DateTimeField(default=now, blank=True )
+	address = models.CharField(max_length=250, blank=False, default='', null=True)
+	image = models.ImageField(blank=True, null=True)
 	details = models.CharField(max_length=1500, blank=True, null=True)
 	slug = models.SlugField(max_length=255, default=name)
 
@@ -36,8 +38,6 @@ class Events(models.Model):
 
 	attendees = models.ManyToManyField(Person, related_name='attendees', default='None', blank=True)
 	organisor = models.ForeignKey(Person, on_delete=models.CASCADE, related_name = 'event_organisor', null=True)
-	address = models.CharField(max_length=250, blank=False, default='', null=True)
-#	position = GeopositionField()
 
 	class Meta:
 		verbose_name_plural = 'events'
