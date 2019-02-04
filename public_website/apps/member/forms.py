@@ -18,7 +18,7 @@ class SignUpForm(UserCreationForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.description = """Create a Django Meetup account, help grow the
+        self.form_instructions = """Create a Django Meetup account, help grow the
             Django community and enjoy our custom features."""
         self.fields['password2'].label = 'Confirm'
 
@@ -34,7 +34,7 @@ class PasswordResetForm(PasswordResetFormTemplate):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.description = """Submit your account email for instructions on how
+        self.form_instructions = """Submit your account email for instructions on how
             to reset your password. You will need to complete within 1 hour."""
 
     def send_mail(self, subject_template_name, email_template_name,

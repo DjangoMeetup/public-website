@@ -22,7 +22,7 @@ for root, dirs, files in os.walk(base_dir):
     for name in files:
         file_path = os.path.join(root, name)
         # Remove sqlite3 databases
-        if ('db.sqlite3' in file_path):
+        if ('.sqlite3' in file_path):
             if os.path.isfile(file_path):
                 os.unlink(file_path)
         # Remove all files in __pycache__

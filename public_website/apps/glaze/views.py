@@ -9,10 +9,12 @@ def reset_session(request):
 
 
 class GlazeMixin:
+
     # Context variables for Templates
     glaze_heading = None
     glaze_form_submit_name = None
     glaze_form_action = None
+    glaze_form_autocomplete = False
     glaze_cancel_url = None
     glaze_callback_context = {}
     glaze_external_errors = []
@@ -20,13 +22,15 @@ class GlazeMixin:
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        if (self.glaze_heading is not None):
+        if self.glaze_heading:
             context['glaze_heading'] = self.glaze_heading
-        if (self.glaze_form_submit_name is not None):
+        if self.glaze_form_submit_name:
             context['glaze_form_submit_name'] = self.glaze_form_submit_name
-        if (self.glaze_form_action is not None):
+        if self.glaze_form_action:
             context['glaze_form_action'] = self.glaze_form_action
-        if (self.glaze_cancel_url is not None):
+        if self.glaze_form_autocomplete:
+            context['glaze_form_autocomplete'] = self.glaze_form_autocomplete
+        if self.glaze_cancel_url:
             context['glaze_cancel_url'] = self.glaze_cancel_url
         context['google_recaptcha_public_key'] = settings.GOOGLE_RECAPTCHA_PUBLIC_KEY
         context = {**context, **self.glaze_callback_context}
@@ -39,7 +43,6 @@ class GlazeMixin:
         is_form_valid = form.is_valid()
         if self.glaze_external_errors:
             for error in self.glaze_external_errors:
-                print(error)
                 form.add_error(None, error)
         super().post(request, *args, **kwargs)
         data = {}

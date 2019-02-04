@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth import login
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth.views import (
@@ -17,7 +18,7 @@ from django.views.generic import CreateView, TemplateView
 from django.contrib.sites.models import Site
 
 from anonymous.views import LoggedInMixin, site_accessible
-from coact.email import EmailMessageAsync
+from coact.email import EmailMessage
 from formality.views import evaluate_recaptcha
 from glaze.views import GlazeMixin
 from member.forms import SignUpForm, PasswordResetForm
@@ -51,7 +52,7 @@ class SignupGlaze(GlazeMixin, CreateView):
             'uid': urlsafe_base64_encode(force_bytes(new_person.pk)).decode(),
             'token': signup_token.make_token(new_person),
         })
-        email = EmailMessageAsync(
+        email = EmailMessage(
             subject,
             message,
             'Django Meetup <info@djangomeetup.com>',

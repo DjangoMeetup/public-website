@@ -1,6 +1,17 @@
 
 /*** Start Activate Glaze  ****************************************************/
 
+  $('#glaze').on('hide.bs.modal', function () {
+    $('#id-modal-content').html('');
+  })
+
+
+  function closeGlaze(redirect_url) {
+    $('#glaze').modal('hide');
+    redirectGlaze(redirect_url);
+  }
+
+
   function redirectGlaze(redirect_url) {
     if (redirect_url != undefined) {
       document.location = redirect_url;
@@ -10,25 +21,25 @@
 
   function renderGlaze(aGlazeUrl) {
     // Inject the desired content into the glaze bootstrap modal
-    $("#id-modal-content").html("").load(aGlazeUrl);
-    $("#glaze").modal("show");
+    $('#id-modal-content').html('').load(aGlazeUrl);
+    $('#glaze').modal('show');
   }
 
 
   function resetGlaze() {
     // Remove the session variable held on server
     $.ajax({
-      type: "GET",
-      url: $("#id-glaze-url").attr("glaze-reset"),
+      type: 'GET',
+      url: $('#id-glaze-url').attr('glaze-reset'),
     });
     // Remove div handling instances where a request has been made to the session
-    $("#id-glaze-url").remove();
+    $('#id-glaze-url').remove();
   }
 
 
   $(document).ready(function() {
     // Load glaze if requested of the session
-    var glazeUrl = $("#id-glaze-url").attr("glaze-url");
+    var glazeUrl = $('#id-glaze-url').attr('glaze-url');
     if (glazeUrl != undefined) {
       renderGlaze(glazeUrl);
       resetGlaze();
@@ -41,18 +52,18 @@
 
   function glazeSubmitForm(anInputButton) {
     var button = $(anInputButton);
-    var glaze_form = button.closest("form");
-    glaze_form.on("submit", function(e) {
+    var glaze_form = button.closest('form');
+    glaze_form.on('submit', function(e) {
       // Generate AJAX response
       $.ajax({
-        type: glaze_form.attr("method"),
-        url: glaze_form.attr("action"),
+        type: glaze_form.attr('method'),
+        url: glaze_form.attr('action'),
         data: serializeGlazeForm(glaze_form),
-        dataType: "json",
+        dataType: 'json',
         success: function (data) {
           if (data.is_glaze) {
             if (data.success_url == undefined) {
-              $("#id-modal-content").html(data.glaze_html);
+              $('#id-modal-content').html(data.glaze_html);
             } else {
               renderGlaze(data.success_url);
             }

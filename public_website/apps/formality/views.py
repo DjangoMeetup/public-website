@@ -17,4 +17,4 @@ def evaluate_recaptcha(request, errors):
     response = urllib.request.urlopen(req)
     result = json.loads(response.read().decode())
     if not result['success']:
-        errors.append('Site access denied, Google reCaptcha authentication failed')
+        errors.append('Google reCaptcha authentication failed')

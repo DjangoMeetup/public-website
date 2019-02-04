@@ -17,9 +17,9 @@ class EntryForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.description = """This entrance portal is merely an example of how
-            to password protect a site while under development; the password for
-            this site is DjangoMeetup. Try entering an incorrect password to
+        self.form_instructions = """This entrance portal is merely an example of
+            how to password protect a site while under development; the password
+            for this site is DjangoMeetup. Try entering an incorrect password to
             view server side validation errors."""
         self.fields['password'].label = 'Entry Code'
         self.fields['password'].help_text = """Enter DjangoMeetup to gain access
