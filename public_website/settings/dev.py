@@ -35,9 +35,6 @@ MIDDLEWARE += [
     # 'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
-# Email backend for development
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
 # Email configuration
 EMAIL_HOST = config('EMAIL_HOST')
 EMAIL_PORT = 587
@@ -45,5 +42,6 @@ EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = True
 EMAIL_HOST_DEBUG_ADDRESS = config('EMAIL_HOST_DEBUG_ADDRESS')
+EMAIL_DOMAIN = config('EMAIL_DOMAIN', default='127.0.0.1:8000')
 
 INTERNAL_IPS = ('127.0.0.1', '0.0.0.0',)

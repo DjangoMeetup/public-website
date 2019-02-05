@@ -3,7 +3,9 @@ import threading
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, PasswordResetForm as PasswordResetFormTemplate
+from django.template.loader import render_to_string
 
+from coact.email import EmailMessage
 from member.models import Person
 
 
@@ -39,14 +41,10 @@ class PasswordResetForm(PasswordResetFormTemplate):
 
     def send_mail(self, subject_template_name, email_template_name,
                   context, from_email, to_email, html_email_template_name=None):
-        send_email_thread = threading.Thread(
-            target=super().send_mail,
-            args=[
-                subject_template_name,
-                email_template_name,
-                context,
-                'Django Meetup <info@djangomeetup.com>',
-                to_email
-            ]
+        email = EmailMessage(
+            ''.join(render_to_string(subject_template_name).splitlines()),
+            render_to_string(email_template_name, context),
+            from_email,
+            to_email,
         )
-        send_email_thread.start()
+        email.send_async()

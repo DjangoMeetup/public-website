@@ -29,6 +29,8 @@ for root, dirs, files in os.walk(base_dir):
         if ('__pycache__' in file_path):
             if os.path.isfile(file_path):
                 os.unlink(file_path)
+    
+    """
     # Remove unwanted folders
     for name in dirs:
         folder_path = os.path.join(root, name)
@@ -36,6 +38,7 @@ for root, dirs, files in os.walk(base_dir):
         if ('migrations' in folder_path):
             if os.path.isdir(folder_path):
                 shutil.rmtree(folder_path)
+    """
 
 # b) run migration scripts
 os.system('python manage.py migrate')

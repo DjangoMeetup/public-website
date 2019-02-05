@@ -15,7 +15,6 @@ from django.urls import reverse, reverse_lazy
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.views.generic import CreateView, TemplateView
-from django.contrib.sites.models import Site
 
 from anonymous.views import LoggedInMixin, site_accessible
 from coact.email import EmailMessage
@@ -45,7 +44,7 @@ class SignupGlaze(GlazeMixin, CreateView):
         self.glaze_callback_context['glaze_username'] = new_person.username
         self.glaze_callback_context['glaze_email'] = new_person.email
         subject = 'Django Meetup Account Activation'
-        domain = Site.objects.get_current().domain
+        domain = settings.EMAIL_DOMAIN
         message = render_to_string('member/email_signup.html', {
             'person': new_person,
             'domain': domain,
@@ -56,7 +55,8 @@ class SignupGlaze(GlazeMixin, CreateView):
             subject,
             message,
             'Django Meetup <info@djangomeetup.com>',
-            [new_person.email])
+            [new_person.email]
+        )
         email.send_async()
 
 
@@ -135,10 +135,11 @@ class LogoutGlaze(GlazeMixin, LogoutTemplate):
 
 
 class PasswordResetGlaze(GlazeMixin, PasswordResetTemplate):
-    # domain = Site.objects.get_current().domain
+    domain = domain = settings.EMAIL_DOMAIN
     email_template_name = 'member/email_password_reset.html'
-    # extra_email_context = {'domain': domain}
+    extra_email_context = {'domain': domain}
     form_class = PasswordResetForm
+    from_email = 'Django Meetup <noreply@djangomeetup.com>'
     subject_template_name = 'member/email_password_reset_subject.txt'
     success_url = reverse_lazy('member:password_reset_acknowledged')
     template_name = 'member/glaze_password_reset_form.html'
