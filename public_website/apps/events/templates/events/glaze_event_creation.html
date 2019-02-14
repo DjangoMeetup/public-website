@@ -1,14 +1,10 @@
-
-<!-- Extend from the glaze_form.html template -->
 {% extends "glaze/glaze_form.html" %}
 
 {% block glaze_form_inputs %}
-
-{# include 'bf_form.html' with form=form #}
-{% include "formality/form_fields.html" %}
-
+    {# include 'bf_form.html' with form=form #}
+    {% include "formality/form_fields.html" %}
 {% endblock %}
 
-{# otjher script blocks were causing for the datetimepicker not to function properly #}
+{# other script blocks were causing for the datetimepicker not to function properly #}
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
  

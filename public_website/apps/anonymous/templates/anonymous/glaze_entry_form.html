@@ -1,9 +1,7 @@
-
-<!-- Extend from the glaze_form.html template -->
 {% extends "glaze/glaze_form.html" %}
 
 {% block glaze_form_inputs %}
-  {% include "formality/form_fields.html" %}
-  <!-- Google's reCaptcha plugin -->
-  {% include "formality/field_recaptcha.html" %}
+    {% include "formality/form_fields.html" %}
+    <!-- Google's reCaptcha plugin -->
+    {% include "formality/field_recaptcha.html" %}
 {% endblock %}

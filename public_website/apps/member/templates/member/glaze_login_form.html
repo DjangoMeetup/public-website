@@ -1,19 +1,17 @@
-
-<!-- Extend from the glaze_form.html template -->
 {% extends "glaze/glaze_form.html" %}
 
 {% block glaze_form_inputs %}
-  {% include "formality/form_fields.html" %}
-  <!-- Google's reCaptcha plugin -->
-  {% include "formality/field_recaptcha.html" %}
-  <div class="form-group row pt-3">
-    <div class="col-sm-3">&nbsp;</div>
-    <div class="col-sm-9">
-      {% include "member/glaze_password_reset_footnote.html" %}
+    {% include "formality/form_fields.html" %}
+    <!-- Google's reCaptcha plugin -->
+    {% include "formality/field_recaptcha.html" %}
+    <div class="form-group row pt-3">
+        <div class="col-sm-3">&nbsp;</div>
+        <div class="col-sm-9">
+            {% include "member/glaze_password_reset_footnote.html" %}
+        </div>
     </div>
-  </div>
 {% endblock %}
 
 {% block glaze_form_footnote %}
-  {% include "member/glaze_signup_footnote.html" %}
+    {% include "member/glaze_signup_footnote.html" %}
 {% endblock %}

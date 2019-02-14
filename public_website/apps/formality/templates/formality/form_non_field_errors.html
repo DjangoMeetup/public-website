@@ -1,18 +1,13 @@
-
 {% if form.non_field_errors %}
-
-  <div class="form-group row">
-    <label class="col-sm-3 col-form-label text-danger">
-      Form Errors
-    </label>
-    <div class="col-sm-9 col-form-label text-danger">
-      {% for error in form.non_field_errors %}
-        {{ error|escape }}
-        {% if not forloop.last %}
-          <br><br>
-        {% endif %}
-      {% endfor %}
+    <div class="form-group row">
+        <label class="col-sm-3 col-form-label text-danger"> Form Errors </label>
+        <div class="col-sm-9 col-form-label text-danger">
+            {% for error in form.non_field_errors %}
+                {{ error|escape }}
+                {% if not forloop.last %}
+                    <br><br>
+                {% endif %}
+            {% endfor %}
+        </div>
     </div>
-  </div>
-
 {% endif %}

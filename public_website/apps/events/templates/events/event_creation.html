@@ -1,54 +1,46 @@
-
-<!-- Extend from the glaze_form.html template -->
 {% extends "glaze/glaze_form.html" %}
 
 {% block glaze_form_inputs %}
+    {# To be redone properly, maybe using Glaze? #}
 
-  {# To be redone properly, maybe using Glaze? #}
+    {# success message #}
+    {% if success %}
+        <div class="container">
+            <div class="alert alert-success" role="alert">
+                <h3>Success!</h3>
+                <h5>Your event has been created!</h5>
+            </div>
+        </div>
+    {% endif %}
 
-  {# success message #}
-  {% if success %}
-<div class="container">
-  
-  <div class='alert alert-success' role='alert'>
-  	<h3>Success!</h3>
-  	<h5>Your event has been created!</h5>
-  </div>
-</div>
-  {% endif %}
+    <div class="container">
+        <form method="post" action="{% url 'events:event_creation' %}">
+            {% csrf_token %}
 
-  <div class="container">
-  	<form method="post" action="{% url 'events:event_creation' %}">
-  		<h2>Create Event</h2>
-  		{% csrf_token %}
-      	{% include 'bf_form.html' with form=form %}
+            <h2>Create Event</h2>
 
-      {% if user.is_authenticated %}
-  	 <button type="submit" class="btn btn-primary">Create</button>
-  	</form>
+            {% include 'bf_form.html' with form=form %}
 
-  	 {% else %}
-  	 <button type="submit" class="btn btn-primary" disabled>Create</button>
-  <div class="alert alert-danger">
-  	<h5>
-  		Sorry, but you have to be logged in before you can create an event.
-  	</h5>
-  		<a class="btn btn-primary"href=# onclick="renderGlaze('{% url 'member:login' %}')">
-            Log In
-          </a>
-          <a class="btn btn-warning" href=# onclick="renderGlaze('{% url 'member:signup' %}')">
-            Sign Up
-          </a>
-  	</div>
-  	{% endif %}
+            {% if user.is_authenticated %}
+                <button type="submit" class="btn btn-primary">Create</button>
+                </form>
 
-  </div>
-  <br>
-  <br><br>
-
+            {% else %}
+                <button type="submit" class="btn btn-primary" disabled>Create</button>
+                <div class="alert alert-danger">
+                    <h5>
+                        Sorry, but you have to be logged in before you can create an event. </h5>
+                    <a class="btn btn-primary" href=# onclick="renderGlaze('{% url 'member:login' %}')"> Log In </a>
+                    <a class="btn btn-warning" href=# onclick="renderGlaze('{% url 'member:signup' %}')"> Sign Up </a>
+                </div>
+            {% endif %}
+    </div>
+    <br>
+    <br>
+    <br>
 {% endblock %}
 
-{# otjher script blocks were causing for the datetimepicker not to function properly #}
+{# other script blocks were causing for the datetimepicker not to function properly #}
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
 {# might want to use this for the locations fields #}

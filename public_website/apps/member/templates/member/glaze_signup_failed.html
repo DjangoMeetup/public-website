@@ -1,15 +1,13 @@
-
-<!-- Extend from the glaze_notice.html template -->
 {% extends "glaze/glaze_notice.html" %}
 
 {% block glaze_notice %}
-  <p>An error has occurred in the verification of your membership.</p>
-  <p>The verification link is no longer valid for your application.</p>
-  <p>Please begin the process again.</p>
+    <p>An error has occurred in the verification of your membership.</p>
+    <p>The verification link is no longer valid for your application.</p>
+    <p>Please begin the process again.</p>
 {% endblock %}
 
 {% block glaze_footer %}
-  <div class="modal-footer">
-    {% include "member/glaze_signup_footnote.html" %}
-  </div>
+    <div class="modal-footer">
+        {% include "member/glaze_signup_footnote.html" %}
+    </div>
 {% endblock %}

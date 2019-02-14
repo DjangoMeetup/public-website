@@ -1,14 +1,9 @@
-
-<!-- Extend from the base.html template -->
 {% extends "anonymous/base.html" %}
-
 {% load static %}
 
 <!-- Insertion of html for the page -->
 {% block body %}
-
-  <div class="holding" onclick="renderGlaze('{% url 'anonymous:entry' %}')">
-    <h2>[Click to Enter]</h2>
-  </div>
-
+    <div class="holding" onclick="renderGlaze('{% url 'anonymous:entry' %}')">
+        <h2>[Click to Enter]</h2>
+    </div>
 {% endblock %}

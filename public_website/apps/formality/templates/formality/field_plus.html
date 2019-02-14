@@ -1,20 +1,18 @@
-
-{% load static %}
-{% load widget_tweaks %}
+{% load static widget_tweaks %}
 
 <div class="form-group row">
-  <label for="inputEmail3" class="col-sm-3 col-form-label">
-    {{ field.label_tag|title }}
-    {% if field.help_text %}
-      <img class="formality-icon" src="{% static 'anonymous/img/icon/info-2x.png' %}" alt="i" title="{% if field.label %}{{ field.label }}Info{% else %}Info{% endif %}" data-content="{{ field.help_text }}" data-placement="bottom" onclick="$(this).popover('show');">
-    {% endif %}
-  </label>
-  <div class="col-sm-9">
-    {% render_field field class="form-control" %}
-    {% if field.errors %}
-      <div class="col-form-label text-danger">
-        {{ field.errors |safe }}
-      </div>
-    {% endif %}
-  </div>
+    <label for="inputEmail3" class="col-sm-3 col-form-label">
+        {{ field.label_tag|title }}
+        {% if field.help_text %}
+            <img class="formality-icon" src="{% static 'anonymous/img/icon/info-2x.png' %}" alt="i" title="{% if field.label %}{{ field.label }}Info{% else %}Info{% endif %}" data-content="{{ field.help_text }}" data-placement="bottom" onclick="$(this).popover('show');">
+        {% endif %}
+    </label>
+    <div class="col-sm-9">
+        {% render_field field class="form-control" %}
+        {% if field.errors %}
+            <div class="col-form-label text-danger">
+                {{ field.errors|safe }}
+            </div>
+        {% endif %}
+    </div>
 </div>

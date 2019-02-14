@@ -1,13 +1,10 @@
-
 <div class="modal-header">
-  <h5 class="modal-title">
     {% if glaze_heading is not None %}
-      {{ glaze_heading }}
+        <h5 class="modal-title">{{ glaze_heading }}</h5>
     {% endif %}
-  </h5>
-  <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="redirectGlaze('{{ glaze_cancel_url }}')">
-    <span aria-hidden="true">&times;</span>
-  </button>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="redirectGlaze('{{ glaze_cancel_url }}')">
+        <span aria-hidden="true">&times;</span>
+    </button>
 </div>
 
 {% block glaze_body %}

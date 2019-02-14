@@ -1,18 +1,15 @@
-
-
-<!-- Handle session request to display glaze -->
 {% if request.session.glaze_url is not None %}
-  <div id="id-glaze-url" class="d-none" glaze-url="{{ request.session.glaze_url }}" glaze-reset="{% url 'glaze:reset_session' %}">
-    <!-- No html content required -->
-  </div>
+    <div id="id-glaze-url" class="d-none" glaze-url="{{ request.session.glaze_url }}" glaze-reset="{% url 'glaze:reset_session' %}">
+        <!-- No html content required -->
+    </div>
 {% endif %}
 
 
 <!-- Modal -->
 <div id="glaze" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div id="id-modal-content" class="modal-content">
-      <!-- Content injected via javascript -->
+    <div class="modal-dialog" role="document">
+        <div id="id-modal-content" class="modal-content">
+            <!-- Content injected via javascript -->
+        </div>
     </div>
-  </div>
 </div>

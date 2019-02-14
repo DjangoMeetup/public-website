@@ -1,77 +1,60 @@
 {% extends 'anonymous/base_page.html' %}
 
 {% block page %}
-<br>
-<div class="container">
-{# success message #}
-{% if success %}
-	
-<div class='alert alert-success' role='alert'>
-	<h3>Success!</h3>
-	<h5>We're looking forwards to seeing you there!</h5>
-</div>
-{% endif %}
+    <br>
+    <div class="container">
+        {# success message #}
+        {% if success %}
 
-{# if the user is not authenticated #}
-{% if anonymous %}
-<div class='alert alert-danger' role='alert'>
-	<h3>Oh no!</h3>
-	<h5>Please login so we know who you are first.</h5>
-	<a href=# onclick="renderGlaze('{% url 'member:login' %}')">
-	  Log In
-	</a>
-	<a href=# onclick="renderGlaze('{% url 'member:signup' %}')">
-	  Sign Up
-	</a>
-	
-</div>
+            <div class='alert alert-success' role='alert'>
+                <h3>Success!</h3>
+                <h5>We're looking forwards to seeing you there!</h5>
+            </div>
+        {% endif %}
 
-{% elif user.is_authenticated and not is_group %}
-	<div class="alert alert-danger" role="alert">
-		<h3>Oh no!</h3>
-		<h5>
-			Sorry, but you have to be part of the {{ event.group }} before you can join this event.
-		</h5>
-	</div>
-{% endif %}
-</div>
+        {# if the user is not authenticated #}
+        {% if anonymous %}
+            <div class='alert alert-danger' role='alert'>
+                <h3>Oh no!</h3>
+                <h5>Please login so we know who you are first.</h5>
+                <a href=# onclick="renderGlaze('{% url 'member:login' %}')"> Log In </a>
+                <a href=# onclick="renderGlaze('{% url 'member:signup' %}')"> Sign Up </a>
+            </div>
+        {% elif user.is_authenticated and not is_group %}
+            <div class="alert alert-danger" role="alert">
+                <h3>Oh no!</h3>
+                <h5>Sorry, but you have to be part of the {{ event.group }} before you can join this event. </h5>
+            </div>
+        {% endif %}
+    </div>
 
+    <div class="container">
+    <h1>{{ event.name }}</h1>
+    <hr>
+    <p>{{ event.details }}</p>
 
-<div class="container">
-	<h1>{{ event.name }}</h1>
-	<hr>
-	<p>{{ event.details }}</p>
+    <h3>Group: {{ event.group }}</h3>
 
-	<h3>Group: {{ event.group }}</h3>
+    <h3>Date: {{ event.day }}</h3>
+    <h3>Location: {{ event.address }}</h3>
+    <h5 style="text-indent: 5vw;"><a href="{{ google_url }}">View in Google Maps</a></h5>
 
-	<h3>Date: {{ event.day }}</h3>
-	<h3>Location: {{ event.address }}</h3>
-	<h5 style="text-indent: 5vw;"><a href="{{ google_url }}">View in Google Maps</a></h5>
+    <h3>Organiser: {{ event.organisor }}</h3>
+    <h3>Current Attendees:
+    <ul>
+        {% for attendee in event.attendees.all %}
+            <li>{{ attendee }}</li>
+        {% endfor %}
+    </ul>
 
-	<h3>Organisor: {{ event.organisor }}</h3>
-	<h3>Current Attendees:
-		<ul>
-			{% for attendee in event.attendees.all %}
-			<li>{{ attendee }}</li>
-			{% endfor %}
-		</ul>
-
-
-	{% if user.is_authenticated and is_group%}
-	{# posts the user details which adds them to the list #}
-	<form method="post" action="">
-		{% csrf_token %}
-	<input type="submit" name="submit">		
-	</form>
-
-
-	{% else %}
-
-	<input type="submit" name="submit" disabled>	
-	
-	{% endif %}
-	
-
+    {% if user.is_authenticated and is_group %}
+        {# posts the user details which adds them to the list #}
+        <form method="post" action="">
+            {% csrf_token %} <input type="submit" name="submit">
+        </form>
+    {% else %}
+        <input type="submit" name="submit" disabled>
+    {% endif %}
 {% endblock %}
 
 <ul>
