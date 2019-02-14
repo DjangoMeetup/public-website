@@ -1,0 +1,139 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Migrate Database &#8212; Django Meetup 0.0.1 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Environment Variables" href="06_environment-variables.html" />
+    <link rel="prev" title="Load Packages" href="04_packages.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="migrate-database">
+<h1>Migrate Database<a class="headerlink" href="#migrate-database" title="Permalink to this headline">¶</a></h1>
+<p>After cloning the project, we need to create the equivalent tables in our database.  Note that the database is deliberately exclude from the GitHub source control, via an entry of <a href="#id1"><span class="problematic" id="id2">*</span></a>.sqlite3 in the .gitignore file.
+That way, each developer builds the database from scratch and and then works with a clean set of tables for their development purposes.</p>
+<p>First though, a good practice is to first run the makemigrations command before you make changes to the database.
+This doesn’t touch the database, but instead creates a trail of python code that replicates the instructions required to be made.
+In turn, this can be used later to roll back or recreate model changes, and investigate what took place.</p>
+<p>After having run the migrations command, we then run the migrate command.
+This does affect the database, and the first time we run it, it migrates the complete data structure by replicating the models as tables in the database.
+Thereafter the migrate command updates the database with the latest changes.</p>
+<p>So, lets make migrations and migrate the models via the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">On</span> <span class="n">Linux</span><span class="o">/</span><span class="n">Mac</span><span class="p">:</span>
+<span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">makemigrations</span>
+<span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">migrate</span>
+
+<span class="n">On</span> <span class="n">Windows</span><span class="p">:</span>
+<span class="n">py</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">makemigrations</span>
+<span class="n">py</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">migrate</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Django Meetup</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="01_quickstart.html">Quick Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_download-project.html">Download Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_virtualenv.html">Virtual Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_packages.html">Load Packages</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Migrate Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_environment-variables.html">Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_runserver.html">Run The Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="80_python.html">Appendix 1: Python Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="81_debugging-tricks.html">Appendix 2: Debugging Tricks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="82_sphinx.html">Appendix 4: Sphinx Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="99_rst-guide.html">Appendix 3: reStructuredText Help</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="04_packages.html" title="previous chapter">Load Packages</a></li>
+      <li>Next: <a href="06_environment-variables.html" title="next chapter">Environment Variables</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, DjangoMeetup.com.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/guide/05_migrate-database.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

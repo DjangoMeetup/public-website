@@ -1,0 +1,184 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Virtual Environment &#8212; Django Meetup 0.0.1 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Load Packages" href="04_packages.html" />
+    <link rel="prev" title="Download Project" href="02_download-project.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="virtual-environment">
+<h1>Virtual Environment<a class="headerlink" href="#virtual-environment" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="create-the-virtual-environment">
+<h2>Create the Virtual Environment<a class="headerlink" href="#create-the-virtual-environment" title="Permalink to this headline">¶</a></h2>
+<p>Each time we start a new project, we want a specific environment to be associated with that project. That way, the project’s dependencies can easily be modified, and we can quickly switch to other projects that have different dependencies.  This includes the python version, as well as the various django and 3rd party packages.</p>
+<p>You can store the virtual environment wherever you like.  But it should be easily identifiable, and neatly isolated from all other projects.</p>
+<p>For example, you could have a folder solely dedicated for virtual environments, and another folder dedicated for your projects.</p>
+<p>For simplicity, what we’ll do is store the virtual environment within the project itself. That way, the environment + all project files will be kept in the same folder.</p>
+<p>So let’s create a new virtual environment inside the DjangoMeetup folder, at the same level as the repository folder (ie. the same level as the top <strong>public-website</strong> folder).</p>
+<p>Versions of Python before 3.3 used pip or pyvenv + third party tools to create virtual environments.  However, Python 3.3 and versions since have an in-built venv module, which is recommended.  So we’ll assume you’re using venv.</p>
+<p>You can use any name you choose for the virtual environment, but typical names include the likes of venv , env, or venv_projectname.  Here we’ll just use <strong>env</strong> to help distinguish from the venv command.</p>
+<p>Make sure your command line is in the correct folder, then run the following command to create the virtual environment env:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">On</span> <span class="n">Linux</span><span class="o">/</span><span class="n">Mac</span><span class="p">:</span>
+<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="n">env</span>
+
+<span class="n">On</span> <span class="n">Windows</span><span class="p">:</span>
+<span class="n">py</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="n">env</span>
+</pre></div>
+</div>
+<p>Because the virtual environment folder <strong>env</strong> is above the git repository in the public-website folder, its kept out of the git source control.
+That’s because the environment is for your own setup, and including it in source control would just be bloat.</p>
+<p>Within the DjangoMeetup folder, we should now just have the two folders:</p>
+<ol class="arabic simple">
+<li>the env folder</li>
+<li>the public-website folder (ie. the git repository folder)</li>
+</ol>
+</div>
+<div class="section" id="activate-deactivate-virtual-environment">
+<h2>Activate &amp; Deactivate Virtual Environment<a class="headerlink" href="#activate-deactivate-virtual-environment" title="Permalink to this headline">¶</a></h2>
+<p>We then activate the virtual environment.  In Linux and Mac, you use the source command to run the activate file in the bin folder.  In Windows, you simply run the activate.bat file in the Scripts folder.</p>
+<p>Note that the venv command you ran earlier creates a bin folder in Linux/Mac and a Scripts folder in Windows, so your path to the activate file will obviously differ depending on your OS.</p>
+<p>For PowerShell users, see the note below.</p>
+<p>In Windows, you can also use Git Bash, which mimics the Linux and Mac commands.  In which case, you would also use the source command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">On</span> <span class="n">Linx</span> <span class="o">&amp;</span> <span class="n">Mac</span><span class="p">:</span>
+<span class="n">source</span> <span class="n">env</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
+
+<span class="n">On</span> <span class="n">Windows</span><span class="p">:</span>
+<span class="n">env</span>\<span class="n">Scripts</span>\<span class="n">activate</span>
+
+<span class="n">On</span> <span class="n">Windows</span> <span class="n">Git</span> <span class="n">Bash</span>
+<span class="n">source</span> <span class="n">env</span><span class="o">/</span><span class="n">Scripts</span><span class="o">/</span><span class="n">activate</span>
+</pre></div>
+</div>
+<p>After you’ve run activate you’ll be reminded that you’re in the virtual environment, because at the beginning of your prompt you will now see the environment name in parentheses.  For example, the <strong>(env)</strong> in the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>On Linux/Mac:
+(env) ~/DjangoMeetup/ $
+
+On Windows:
+(env) C:\Owner\Projects\DjangoMeetup &gt;
+</pre></div>
+</div>
+<p>This means the Python you now execute will be from the virtual environment, as are all packages (and package installations will go to that virtual environment, rather than the system)
+To deactivate the environment, you simply use the command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">deactivate</span>
+</pre></div>
+</div>
+<p>Note that if you are using Windows PowerShell, you might run into restrictions trying to utilize the activation script and will have to first run the command below as an administrator. This allows the activation script to be run since it was signed locally.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Set</span><span class="o">-</span><span class="n">ExecutionPolicy</span> <span class="n">RemoteSigned</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Django Meetup</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="01_quickstart.html">Quick Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_download-project.html">Download Project</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Virtual Environment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#create-the-virtual-environment">Create the Virtual Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#activate-deactivate-virtual-environment">Activate &amp; Deactivate Virtual Environment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="04_packages.html">Load Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_migrate-database.html">Migrate Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_environment-variables.html">Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_runserver.html">Run The Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="80_python.html">Appendix 1: Python Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="81_debugging-tricks.html">Appendix 2: Debugging Tricks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="82_sphinx.html">Appendix 4: Sphinx Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="99_rst-guide.html">Appendix 3: reStructuredText Help</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="02_download-project.html" title="previous chapter">Download Project</a></li>
+      <li>Next: <a href="04_packages.html" title="next chapter">Load Packages</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, DjangoMeetup.com.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/guide/03_virtualenv.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
