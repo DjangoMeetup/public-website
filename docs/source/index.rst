@@ -38,7 +38,5 @@ Contents:
    guide/07_runserver
    guide/80_python
    guide/81_debugging-tricks
-   guide/82_sphinx
    guide/99_rst-guide
-
-
+   guide/82_sphinx
