@@ -5,7 +5,7 @@ from django.http import HttpResponse, HttpResponseNotFound, JsonResponse, HttpRe
 from django.urls import reverse, reverse_lazy
 from django.views.generic.edit import FormView
 
-from events.models import Events, EventGroups, UserEventGroupManager
+from events.models import Events, EventGroup, UserEventGroupManager
 from events.forms import EventCreationForm, GroupRegisterForm, GroupCreationForm
 from glaze.views import GlazeMixin
 
@@ -14,216 +14,216 @@ from glaze.views import GlazeMixin
 #Make sure the GlazeMixin inheritance is first, not the formview
 
 class GroupRegisterView(GlazeMixin, FormView):
-	form_class = GroupRegisterForm
-	template_name = 'events/event_basic_forms.html'
-	success_url = reverse_lazy('events:event_list')
-	glaze_heading = 'Join Group'
-	glaze_form_heading = 'Join'
-	is_success = True
-	glaze_form_action = reverse_lazy('events:group_register')
+    form_class = GroupRegisterForm
+    template_name = 'events/event_basic_forms.html'
+    success_url = reverse_lazy('events:event_list')
+    glaze_heading = 'Join Group'
+    glaze_form_heading = 'Join'
+    is_success = True
+    glaze_form_action = reverse_lazy('events:group_register')
 
-	def finalize_post(self, request):
+    def finalize_post(self, request):
 
-		form_info = GroupRegisterForm(request.POST)
-		if form_info.is_valid():
-			groups = form_info.cleaned_data['groups']
-			for group in groups:
-				group.main_user_group.add(request.user)
+        form_info = GroupRegisterForm(request.POST)
+        if form_info.is_valid():
+            groups = form_info.cleaned_data['groups']
+            for group in groups:
+                group.main_user_group.add(request.user.id)
 
-	
+    
 
 class GroupCreationView(GlazeMixin, FormView):
-	form_class = GroupCreationForm
-	template_name = 'events/event_basic_forms.html'
-	success_url = reverse_lazy('events:event_list')
+    form_class = GroupCreationForm
+    template_name = 'events/event_basic_forms.html'
+    success_url = reverse_lazy('events:event_list')
 
-	laze_heading = 'Create Group'
-	glaze_form_heading = 'Create'
-	glaze_form_action = reverse_lazy('events:group_creation')
+    laze_heading = 'Create Group'
+    glaze_form_heading = 'Create'
+    glaze_form_action = reverse_lazy('events:group_creation')
 
-	def finalize_post(self, request):
+    def finalize_post(self, request):
 
-		form_info = GroupCreationForm(request.POST)
-		if form_info.is_valid():
-			form_info.save()
-			name = form_info.cleaned_data['name']
-			
-			new_group = EventGroups.objects.get(name=name)
-			new_group.organisor_group.add(request.user)
+        form_info = GroupCreationForm(request.POST)
+        if form_info.is_valid():
+            form_info.save()
+            name = form_info.cleaned_data['name']
+            
+            new_group = EventGroup.objects.get(name=name)
+            new_group.organisor_group.add(request.user.id)
 
 class EventCreationView(GlazeMixin, FormView):
-	form_class = EventCreationForm
-	success_url = reverse_lazy('events:event_list')
-	template_name = 'events/glaze_event_creation.html'
-	# Glaze configuration
-	glaze_heading = 'Create event'
-	glaze_form_heading = 'Create'
-	glaze_form_action = reverse_lazy('events:event_creation')
+    form_class = EventCreationForm
+    success_url = reverse_lazy('events:event_list')
+    template_name = 'events/glaze_event_creation.html'
+    # Glaze configuration
+    glaze_heading = 'Create event'
+    glaze_form_heading = 'Create'
+    glaze_form_action = reverse_lazy('events:event_creation')
 
-	def get_form_kwargs(self, **kwargs):
-		user = self.request.user
-		if user.is_authenticated:
-			print ('not authenticated')
-			form_kwargs = super(EventCreationView, self).get_form_kwargs()
-			form_kwargs.update({
-				'user': user 
-				})
+    def get_form_kwargs(self, **kwargs):
+        user = self.request.user
+        if user.is_authenticated:
+            print ('not authenticated')
+            form_kwargs = super(EventCreationView, self).get_form_kwargs()
+            form_kwargs.update({
+                'user': user 
+                })
 
-			return form_kwargs
-		else:
-			form_kwargs = super(EventCreationView, self).get_form_kwargs()
-			return form_kwargs
-
-
-
-	def finalize_post(self, request):
-		form_info = self.get_form()
+            return form_kwargs
+        else:
+            form_kwargs = super(EventCreationView, self).get_form_kwargs()
+            return form_kwargs
 
 
-		if form_info.is_valid():
-			print ('form valid!')
-			info = form_info.save(commit=False)
-			name = form_info.cleaned_data['name']
-			day = form_info.cleaned_data['day']
-			group = form_info.cleaned_data['group']
 
-			#address
-			address_1 = form_info.cleaned_data['address_1']
-			suburb = form_info.cleaned_data['suburb'] + ', '
-			postcode = form_info.cleaned_data['postcode']
-			state = form_info.cleaned_data['state'] + ', '
-
-			address = '{}, {}{}{}'.format(address_1, suburb, state, postcode)
-			info.address = address
+    def finalize_post(self, request):
+        form_info = self.get_form()
 
 
-			info.save()
-			#organisor
-			organisor = request.user
-			info.organisor = organisor
+        if form_info.is_valid():
+            print ('form valid!')
+            info = form_info.save(commit=False)
+            name = form_info.cleaned_data['name']
+            day = form_info.cleaned_data['day']
+            group = form_info.cleaned_data['group']
+
+            #address
+            address_1 = form_info.cleaned_data['address_1']
+            suburb = form_info.cleaned_data['suburb'] + ', '
+            postcode = form_info.cleaned_data['postcode']
+            state = form_info.cleaned_data['state'] + ', '
+
+            address = '{}, {}{}{}'.format(address_1, suburb, state, postcode)
+            info.address = address
+
+
+            info.save()
+            #organisor
+            organisor = request.user
+            info.organisor = organisor
 
 
 # class TemplateEventCreationView(GlazeMixin, TemplateView):
 
-# 	template_name = 'events/event_creation.html'
+#   template_name = 'events/event_creation.html'
 #     # Glaze overlay configuration
-# 	glaze_heading = 'Event Creation'
-# 	glaze_form_submit_name = 'Create'
-# 	glaze_form_action = reverse_lazy('events:event_creation')
+#   glaze_heading = 'Event Creation'
+#   glaze_form_submit_name = 'Create'
+#   glaze_form_action = reverse_lazy('events:event_creation')
 
-# 	def get(self, request):
-# 		#getting the form and submitting it to template
-# 		form = EventCreationForm()
-# 		args = {'form': form}
+#   def get(self, request):
+#       #getting the form and submitting it to template
+#       form = EventCreationForm()
+#       args = {'form': form}
 
-# 		return render(request, self.template_name, args)
+#       return render(request, self.template_name, args)
 
 
 #creating a list of all the events where the user can then choose from
 class EventsList(TemplateView):
-	template_name='events/event_list.html'
+    template_name='events/event_list.html'
 
-	def get(self, request):
-		#retrieve's and lists all the events
-		event_list = []
-		for event in Events.objects.all().order_by('day'):
-			event_list.append(event)
-		args = {
-			'event_list': event_list,
-			}
-		return render(request, self.template_name, args)
+    def get(self, request):
+        #retrieve's and lists all the events
+        event_list = []
+        for event in Events.objects.all().order_by('day'):
+            event_list.append(event)
+        args = {
+            'event_list': event_list,
+            }
+        return render(request, self.template_name, args)
 
 #A more detailed view of the event itself
 class EventSpecifics(TemplateView):
-	template_name = 'events/event_specifics.html'
+    template_name = 'events/event_specifics.html'
 
-	def get(self, request, slug):
-		is_group = False
+    def get(self, request, slug):
+        is_group = False
 
-		# google_url
+        # google_url
 
 
-		#Try and get the event corresponding to the slug.
-		#get or 404 causes other problems, so I reccommend you don't try and use it
-		try:
-			event = Events.objects.get(slug=slug)
-			got_event = True
-		except:
-			return HttpResponseNotFound('<h1>Page not found</h1>')
+        #Try and get the event corresponding to the slug.
+        #get or 404 causes other problems, so I reccommend you don't try and use it
+        try:
+            event = Events.objects.get(slug=slug)
+            got_event = True
+        except:
+            return HttpResponseNotFound('<h1>Page not found</h1>')
 
-		#if the user is part in the event pass a true variable to the template
-		if got_event:
-			# google urls
+        #if the user is part in the event pass a true variable to the template
+        if got_event:
+            # google urls
 
-			address_str = str(event.address)
-			position_no_comma = address_str.replace(',', '%2C')
-			position_no_space = position_no_comma.replace(' ', '+')
-			google_url = "https://www.google.com/maps/search/" + position_no_space
+            address_str = str(event.address)
+            position_no_comma = address_str.replace(',', '%2C')
+            position_no_space = position_no_comma.replace(' ', '+')
+            google_url = "https://www.google.com/maps/search/" + position_no_space
 
-			#datetime
-			date = event.day
-			print (type(date))
-			day = date.day
-			month = date.month
-			year = date.year
+            #datetime
+            date = event.day
+            print (type(date))
+            day = date.day
+            month = date.month
+            year = date.year
 
-			args = {
-			'year': year,
-			'month': month,
-			'day': day,
-			'event': event, 
-			'google_url': google_url
-			}
-			# get a list of all the groups the user is in
-			if request.user.is_authenticated:
-				user_groups = [_event for _event in UserEventGroupManager().get_queryset(request).all()]
-				if event.group in user_groups:
-					is_group = True
-					args['is_group'] = is_group
+            args = {
+            'year': year,
+            'month': month,
+            'day': day,
+            'event': event, 
+            'google_url': google_url
+            }
+            # get a list of all the groups the user is in
+            if request.user.is_authenticated:
+                user_groups = [_event for _event in UserEventGroupManager().get_queryset(request).all()]
+                if event.group in user_groups:
+                    is_group = True
+                    args['is_group'] = is_group
 
-		return render(request, self.template_name, args)
-	def post(self, request, slug):
-		user = request.user
-		try:
-			event = Events.objects.get(slug=slug)
-			got_event = True
-		except:
-			return HttpResponseNotFound('<h1>Page not found</h1>')
+        return render(request, self.template_name, args)
+    def post(self, request, slug):
+        user = request.user
+        try:
+            event = Events.objects.get(slug=slug)
+            got_event = True
+        except:
+            return HttpResponseNotFound('<h1>Page not found</h1>')
 
-		if got_event:
-			address_str = str(event.address)
-			position_no_comma = address_str.replace(',', '%2C')
-			position_no_space = position_no_comma.replace(' ', '+')
-			google_url = "https://www.google.com/maps/search/" + position_no_space
-			
-			#datetime
-			date = event.day
-			print (type(date))
-			day = date.day
-			month = date.month
-			year = date.year
+        if got_event:
+            address_str = str(event.address)
+            position_no_comma = address_str.replace(',', '%2C')
+            position_no_space = position_no_comma.replace(' ', '+')
+            google_url = "https://www.google.com/maps/search/" + position_no_space
+            
+            #datetime
+            date = event.day
+            print (type(date))
+            day = date.day
+            month = date.month
+            year = date.year
 
-			args = {
-			'year': year,
-			'month': month,
-			'day': day,
-			'event': event, 
-			'google_url': google_url
-			}
-			# get a list of all the groups the user is in
-			if request.user.is_authenticated:
-				user_groups = [_event for _event in UserEventGroupManager().get_queryset(request).all()]
-				if event.group in user_groups:
-					is_group = True
-					args['is_group'] = is_gro
+            args = {
+            'year': year,
+            'month': month,
+            'day': day,
+            'event': event, 
+            'google_url': google_url
+            }
+            # get a list of all the groups the user is in
+            if request.user.is_authenticated:
+                user_groups = [_event for _event in UserEventGroupManager().get_queryset(request).all()]
+                if event.group in user_groups:
+                    is_group = True
+                    args['is_group'] = is_group
 
-		if user.is_authenticated:
-			event.attendees.add(request.user)
-			success = True
-			args['success'] = success
-		else:
-			anonymous = True
-			args['anonymous'] = anonymous
+        if user.is_authenticated:
+            event.attendees.add(request.user)
+            success = True
+            args['success'] = success
+        else:
+            anonymous = True
+            args['anonymous'] = anonymous
 
-		return render(request, self.template_name, args)
+        return render(request, self.template_name, args)
 
