@@ -21,7 +21,7 @@ class EventGroup(Group):
 		related_name='group_organisor', default='None', blank=True)
 	main_user_group = models.ManyToManyField(Person, 
 		related_name='group_user', default='None', blank=True)
-
+'''
 class EventGroupOld(models.Model):
 	name = models.CharField(max_length=200, blank=True, default='Event Group', unique=True)
 	details = models.CharField(max_length=1500, blank=True, null=True)
@@ -36,7 +36,7 @@ class EventGroupOld(models.Model):
 
 	def __str__(self):
 		return '{}'.format(self.name)
-
+'''
 class Events(models.Model):
 	name = models.CharField(max_length=200, blank=True, 
 		default='Unnamed Event')
