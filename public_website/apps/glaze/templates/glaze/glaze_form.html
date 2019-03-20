@@ -8,8 +8,12 @@
 
     {% csrf_token %}
 
+    {% if not glaze_form_autocomplete %}
+      <input class="d-none" autocomplete="false" type="text" name="" value="">
+    {% endif %}
+
     <div class="modal-body">
-      {% include "formality/form_description.html" %}
+      {% include "formality/form_instructions.html" %}
       {% block glaze_form_inputs %}
         <!-- Extension e.g. {% include "formality/form_fields.html" with form=some_form %} -->
         <!-- This pattern can be used for more than one form -->
@@ -20,10 +24,10 @@
     <div class="modal-footer">
       {% block glaze_form_footnote %}
       {% endblock %}
-      <button type="button" class="btn btn-secondary" data-dismiss="modal">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closeGlaze('{{ glaze_cancel_url }}')">
         Close
       </button>
-      <button type="submit" class="btn btn-primary" onclick="glazeSubmitForm(this)">
+      <button id="id-glaze-form-submit" type="submit" class="btn btn-primary" onclick="glazeSubmitForm(this)">
         {% if glaze_form_submit_name %}
           {{ glaze_form_submit_name }}
         {% else %}
