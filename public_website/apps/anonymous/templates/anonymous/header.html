@@ -21,16 +21,14 @@
 
         View Django Meetups
       </a>
-      {# TODO: make it so the Glaze can be used again #}
-
-      <!---
-      <a class="nav-item nav-link text-primary pr-3 nav-start-meetup" href="{% url 'events:event_creation' %}">
-        --->
+      {% if user.is_authenticated %}
       <a class="nav-item nav-link pr-3 nav-start-meetup" href="#"  onclick="renderGlaze('{% url 'events:event_creation' %}')">
-        Start a Django Meetup
+        Start a Django Meetup 
       </a>
+      {% endif %}
     </div>
   </div>
+  {% if user.is_authenticated %}
       <div class="nav-item dropdown">
         <a href="#" class="nav-link dropdown-toggle text-primary pr-3 nav-start-meetup" id="navbarDropdown" data-toggle="dropdown">Django Meetup Groups</a>
         <div class="dropdown-menu" aria-labellededby="navbarDropdown">
@@ -44,7 +42,7 @@
         </div>
         
       </div>
-      {% if user.is_authenticated %}
+
         <a class="nav-item nav-link pl-3" href=# onclick="renderGlaze('{% url 'member:logout' %}')">
           Log Out
         </a>

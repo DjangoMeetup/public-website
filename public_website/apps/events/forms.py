@@ -1,5 +1,5 @@
 from django import forms
-from events.models import Events, EventGroups
+from events.models import Events, EventGroup
 #from django.contrib.admin.widgets import AdminSplitDateTime
 from events.widgets import XDSoftDateTimePickerInput
 
@@ -7,15 +7,15 @@ from events.widgets import XDSoftDateTimePickerInput
 class GroupCreationForm(forms.ModelForm):
 	
 	class Meta:
-		model = EventGroups
+		model = EventGroup
 		fields = ('name', 'details')
 
 		widgets = {
-		'details': forms.Textarea,		
+		'details': forms.Textarea,	
 		}
 
 class GroupRegisterForm(forms.Form):
-	groups = forms.ModelMultipleChoiceField(queryset=EventGroups.objects.all())
+	groups = forms.ModelMultipleChoiceField(queryset=EventGroup.objects.all())
 
 
 
@@ -72,8 +72,8 @@ class EventCreationForm(forms.ModelForm):
 		#if the user is authenticated
 		if user:
 			print ('form: authenticated')
-			self.fields['group'].queryset = EventGroups.objects.filter(main_user_group=user)
+			self.fields['group'].queryset = EventGroup.objects.filter(main_user_group=user)
 		#otherwise just an empty queryset
 		else:
 			print ('form: not authenticated')
-			self.fields['group'].queryset = EventGroups.objects.none()
+			self.fields['group'].queryset = EventGroup.objects.none()

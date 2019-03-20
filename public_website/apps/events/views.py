@@ -5,7 +5,7 @@ from django.http import HttpResponse, HttpResponseNotFound, JsonResponse, HttpRe
 from django.urls import reverse, reverse_lazy
 from django.views.generic.edit import FormView
 
-from events.models import Events, EventGroups, UserEventGroupManager
+from events.models import Events, EventGroup, UserEventGroupManager
 from events.forms import EventCreationForm, GroupRegisterForm, GroupCreationForm
 from glaze.views import GlazeMixin
 
@@ -28,7 +28,7 @@ class GroupRegisterView(GlazeMixin, FormView):
 		if form_info.is_valid():
 			groups = form_info.cleaned_data['groups']
 			for group in groups:
-				group.main_user_group.add(request.user)
+				group.main_user_group.add(request.user.id)
 
 	
 
@@ -48,8 +48,8 @@ class GroupCreationView(GlazeMixin, FormView):
 			form_info.save()
 			name = form_info.cleaned_data['name']
 			
-			new_group = EventGroups.objects.get(name=name)
-			new_group.organisor_group.add(request.user)
+			new_group = EventGroup.objects.get(name=name)
+			new_group.organisor_group.add(request.user.id)
 
 class EventCreationView(GlazeMixin, FormView):
 	form_class = EventCreationForm
@@ -215,7 +215,7 @@ class EventSpecifics(TemplateView):
 				user_groups = [_event for _event in UserEventGroupManager().get_queryset(request).all()]
 				if event.group in user_groups:
 					is_group = True
-					args['is_group'] = is_gro
+					args['is_group'] = is_group
 
 		if user.is_authenticated:
 			event.attendees.add(request.user)
