@@ -7,16 +7,16 @@
 {# include 'bf_form.html' with form=form #}
 
 {% if user.is_authenticated %}
-	{% include "formality/form_fields.html" %}
+    {% include "formality/form_fields.html" %}
 {% else %}
 
 <h1>You're not logged in!</h1>
 <h5>Login before creating an event:</h5>
-	<a class="btn btn-secondary" href=# onclick="renderGlaze('{% url 'member:login' %}')">
-	  Log In
-	</a>
+    <a class="btn btn-secondary" href=# onclick="renderGlaze('{% url 'member:login' %}')">
+      Log In
+    </a>
 
-	<a class="btn btn-secondary" href=# onclick="renderGlaze('{% url 'member:signup' %}')">
+    <a class="btn btn-secondary" href=# onclick="renderGlaze('{% url 'member:signup' %}')">
           Sign Up
         </a>
 {% endif %}
